@@ -1,6 +1,6 @@
 // Portfolio website animations and interactions
 
-document.addEventListener('DOMContentLoaded', function () {
+function initPortfolio() {
   // Share navbar height for layout calculations (e.g., about page fixed panel height)
   function updateNavbarHeightVar() {
     const navbar = document.querySelector('.navbar');
@@ -38,6 +38,14 @@ document.addEventListener('DOMContentLoaded', function () {
     { selector: '.work-experience-section', delay: SHOW_VIDEO_INTRO ? 1300 : 1100 },
     { selector: '.testimonials-section', delay: SHOW_VIDEO_INTRO ? 1500 : 1300 },
     { selector: '.footer-section', delay: SHOW_VIDEO_INTRO ? 1700 : 1500 },
+    // Case study specific selectors
+    { selector: '.case-study-intro', delay: 500 },
+    { selector: '.case-study-header', delay: 600 },
+    { selector: '.case-study-app-card', delay: 700 },
+    { selector: '.case-study-text-container > .case-study-featured-image', delay: 800 },
+    { selector: '.case-study-achievements', delay: 900 },
+    { selector: '.case-study-sections', delay: 1000 },
+    { selector: '.case-study-description', delay: 1100 }
   ];
 
   // Start sequential animations
@@ -420,6 +428,23 @@ document.addEventListener('DOMContentLoaded', function () {
         ensureAboutBodyStackMeasured();
       }
     });
+
+    // Initialize on page load since it's now a dedicated page
+    if (aboutModal) {
+      const initAboutLayout = function() {
+        positionAboutNavSlider(false);
+        ensureAboutBodyStackMeasured();
+      };
+      
+      requestAnimationFrame(initAboutLayout);
+      // Fallbacks to ensure it measures correctly after fonts/layout settle
+      setTimeout(initAboutLayout, 100);
+      setTimeout(initAboutLayout, 500);
+      window.addEventListener('load', initAboutLayout);
+      if (document.fonts) {
+        document.fonts.ready.then(initAboutLayout);
+      }
+    }
   }
 
   function openAboutModal() {
@@ -427,8 +452,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setModalHash('#about');
 
-    // Reduce Chrome scroll/compositing jank by pausing the animated sky while a modal is open.
-    window.skyRenderer?.pause('aboutModal');
+
 
     aboutModal.style.display = 'flex';
     ensureAboutBodyStackMeasured();
@@ -614,8 +638,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function closeAboutModal() {
     if (!aboutModal) return;
 
-    // Resume immediately on close intent so the sky feels instant behind the closing animation.
-    window.skyRenderer?.resume('aboutModal');
+
 
     // Remove hash from URL when closing
     if (window.location.hash === '#about') {
@@ -752,7 +775,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to open video modal
   function openVideoModal() {
-    window.skyRenderer?.pause('videoModal');
     // Add the Loom embed to the container
     loomEmbedContainer.innerHTML = loomEmbedHTML;
 
@@ -765,7 +787,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to close video modal
   function closeVideoModal() {
-    window.skyRenderer?.resume('videoModal');
     // Hide the modal
     videoModal.style.display = 'none';
 
@@ -1055,8 +1076,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to open case study modal with specific content
   function openCaseStudyModal(caseStudyType) {
-    // Pause early to avoid competing with modal DOM work + Chrome compositing while scrolling.
-    window.skyRenderer?.pause('caseStudyModal');
+    // Pause early to avoid competing with modal DOM work.
     caseStudyModal.setAttribute('data-case-study', caseStudyType || 'docswell');
     const data = caseStudyData[caseStudyType] || caseStudyData['docswell']; // Fallback to docswell if type not found
     const caseStudyHashMap = {
@@ -1621,8 +1641,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to close case study modal
   function closeCaseStudyModal() {
-    // Resume immediately on close intent so the sky animates behind the closing transition.
-    window.skyRenderer?.resume('caseStudyModal');
+
     // Remove hash from URL when closing
     const currentHash = window.location.hash;
     if (
@@ -1694,14 +1713,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Case study card click handlers
+  // Case study card click handlers - navigate to case study pages
+  const caseStudyUrls = {
+    docswell: 'docswell-case-study.html',
+    rememberly: 'rememberly-case-study.html',
+    jiffyhive: 'jiffyhive-case-study.html',
+  };
+
   const caseCards = document.querySelectorAll('.case-card');
   caseCards.forEach((card) => {
     card.addEventListener('click', function () {
       const caseStudyType = card.getAttribute('data-case-study');
+      const url = caseStudyUrls[caseStudyType];
 
-      if (caseStudyType) {
-        openCaseStudyModal(caseStudyType);
+      if (url) {
+        // Create an anchor and click it so page-transition.js intercepts it
+        const a = document.createElement('a');
+        a.href = url;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       }
     });
   });
@@ -1730,7 +1761,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to open image popup modal
   function openImagePopup(imageSrc, imageAlt) {
-    window.skyRenderer?.pause('imagePopup');
+
     popupImage.src = imageSrc;
     popupImage.alt = imageAlt;
     imagePopupModal.classList.remove('closing');
@@ -1744,8 +1775,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function closeImagePopup() {
     if (imagePopupModal.style.display === 'none') return;
 
-    // Resume immediately; if another modal is still open, token-based pausing keeps the sky paused.
-    window.skyRenderer?.resume('imagePopup');
+
 
     imagePopupModal.classList.add('closing');
     setTimeout(() => {
@@ -1786,6 +1816,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function setActiveNav() {
     const path = window.location.pathname.toLowerCase();
     const isAbout = path.endsWith('/about.html') || path.endsWith('about.html');
+    const isHome = path.endsWith('/index.html') || path.endsWith('index.html') || path.endsWith('/') || path === '';
 
     navLinks.forEach((l) => l.classList.remove('active'));
     mobileNavLinks.forEach((l) => l.classList.remove('active'));
@@ -1798,6 +1829,13 @@ document.addEventListener('DOMContentLoaded', function () {
           l.classList.add('active');
         }
         if ((l.getAttribute('href') || '') === '#about') {
+          l.classList.add('active');
+        }
+      });
+      return;
+    } else if (isHome) {
+      allLinks.forEach((l) => {
+        if ((l.getAttribute('href') || '').includes('index.html')) {
           l.classList.add('active');
         }
       });
@@ -1837,7 +1875,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Hash-based modal opening on page load
   function handleInitialHash() {
     const hash = window.location.hash;
 
@@ -1845,14 +1882,11 @@ document.addEventListener('DOMContentLoaded', function () {
       // Open about modal
       openAboutModal();
     } else if (hash === '#docswell') {
-      // Open Docswell case study
-      openCaseStudyModal('docswell');
+      const a = document.createElement('a'); a.href = 'docswell-case-study.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
     } else if (hash === '#rememberly') {
-      // Open Rememberly case study
-      openCaseStudyModal('rememberly');
+      const a = document.createElement('a'); a.href = 'rememberly-case-study.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
     } else if (hash === '#jiffyhive') {
-      // Open Jiffyhive case study
-      openCaseStudyModal('jiffyhive');
+      const a = document.createElement('a'); a.href = 'jiffyhive-case-study.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
     }
   }
 
@@ -1865,25 +1899,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Close any open modals first
     const aboutModalOpen = aboutModal && aboutModal.style.display === 'flex';
-    const caseStudyModalOpen =
-      caseStudyModal && caseStudyModal.style.display === 'flex';
 
     if (hash === '#about') {
-      if (caseStudyModalOpen) closeCaseStudyModal();
       if (!aboutModalOpen) openAboutModal();
     } else if (hash === '#docswell') {
       if (aboutModalOpen) closeAboutModal();
-      if (!caseStudyModalOpen) openCaseStudyModal('docswell');
+      const a = document.createElement('a'); a.href = 'docswell-case-study.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
     } else if (hash === '#rememberly') {
       if (aboutModalOpen) closeAboutModal();
-      if (!caseStudyModalOpen) openCaseStudyModal('rememberly');
+      const a = document.createElement('a'); a.href = 'rememberly-case-study.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
     } else if (hash === '#jiffyhive') {
       if (aboutModalOpen) closeAboutModal();
-      if (!caseStudyModalOpen) openCaseStudyModal('jiffyhive');
+      const a = document.createElement('a'); a.href = 'jiffyhive-case-study.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
     } else if (hash === '') {
       // No hash - close all modals
       if (aboutModalOpen) closeAboutModal();
-      if (caseStudyModalOpen) closeCaseStudyModal();
     }
   });
-});
+}
+
+document.addEventListener('DOMContentLoaded', initPortfolio);
+window.addEventListener('portfolio:init', initPortfolio);

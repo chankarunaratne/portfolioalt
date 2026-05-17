@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta name="theme-color" content="#6EB5E5" />
+    <meta name="theme-color" content="#ffffff" />
     <title>Chandima - Product Designer</title>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
@@ -51,7 +51,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -118,36 +118,37 @@
     </script>
   </head>
   <body>
-    <canvas id="skyCanvas"></canvas>
 
     <div class="home page-root">
       <!-- Navbar -->
       <nav class="navbar">
         <div class="navbar-background"></div>
         <div class="navbar-content">
-          <div class="logo-section">
+          <div class="nav-left">
             <a href="index.html" class="logo-link">
               <img src="assets/logo.png" alt="Chan" class="logo-image" />
             </a>
+            <div class="nav-links">
+              <a href="index.html" class="nav-link active">Home</a>
+              <a href="about.html" class="nav-link">About</a>
+              <a
+                href="https://www.linkedin.com/in/chanbandara"
+                class="nav-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+              <a
+                href="https://drive.google.com/file/d/1zkMgUpNFrgcPfYl2BF4a07LVxze5P_ru/view?usp=drive_link"
+                class="nav-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Resume</a
+              >
+              <a href="mailto:chanwork94@gmail.com" class="nav-link">Contact</a>
+            </div>
           </div>
-          <div class="nav-links">
-            <a href="#about" class="nav-link">About</a>
-            <a
-              href="https://www.linkedin.com/in/chanbandara"
-              class="nav-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              >LinkedIn</a
-            >
-            <a
-              href="https://drive.google.com/file/d/1zkMgUpNFrgcPfYl2BF4a07LVxze5P_ru/view?usp=drive_link"
-              class="nav-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Resume</a
-            >
-            <a href="mailto:chanwork94@gmail.com" class="nav-link">Contact</a>
-          </div>
+          <span class="nav-location">Melbourne, Australia</span>
           <button class="mobile-menu-toggle" aria-label="Toggle menu">
             <img src="assets/menu.svg" alt="Menu" width="24" height="24" />
           </button>
@@ -155,7 +156,8 @@
         <!-- Mobile Menu Overlay -->
         <div class="mobile-menu-overlay">
           <div class="mobile-nav-links">
-            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="index.html" class="mobile-nav-link active">Home</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
             <a
               href="https://www.linkedin.com/in/chanbandara"
               class="mobile-nav-link"
@@ -586,7 +588,7 @@
             </p>
           </div>
           <div class="footer-links">
-            <a href="#about" class="footer-link">About</a>
+            <a href="about.html" class="footer-link">About</a>
             <div class="footer-dot"></div>
             <a
               href="https://www.linkedin.com/in/chankarunaratne/"
@@ -840,215 +842,6 @@
         </div>
       </div>
 
-      <!-- About Modal (shares the exact same modal structure + styles as case studies) -->
-      <div id="about-modal" class="case-study-modal" style="display: none">
-        <div class="case-study-modal-overlay"></div>
-        <button class="case-study-modal-close" aria-label="Close about">
-          <img src="assets/close-button.svg" alt="Close" />
-        </button>
-        <div class="case-study-modal-content">
-          <div class="case-study-modal-container">
-            <div class="about-modal-inner">
-              <div class="about-modal-left">
-                <div class="about-modal-photo-frame">
-                  <img
-                    src="assets/about/about-image.jpeg"
-                    class="about-modal-photo"
-                    alt="Enjoying a coffee while sitting at Yarra Promenade in Melbourne"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <p class="about-modal-caption">
-                  Enjoying a coffee while sitting at Yarra Promenade in
-                  Melbourne
-                </p>
-              </div>
-
-              <div class="about-modal-right">
-                <h2 class="about-title">Heya, I’m Chan!</h2>
-
-                <nav class="about-modal-nav" aria-label="About sections">
-                  <span class="about-nav-slider" aria-hidden="true"></span>
-                  <button
-                    type="button"
-                    class="about-modal-nav-item is-active"
-                    aria-current="page"
-                  >
-                    Intro
-                  </button>
-                  <button type="button" class="about-modal-nav-item">
-                    Philosophy
-                  </button>
-                  <button type="button" class="about-modal-nav-item">
-                    Photography
-                  </button>
-                  <button type="button" class="about-modal-nav-item">
-                    Movie log
-                  </button>
-                </nav>
-                <div class="about-modal-body-stack">
-                  <div
-                    class="about-body about-modal-body is-visible is-active"
-                    data-tab="intro"
-                  >
-                    <p>
-                      I create digital experiences that are intuitive, simple,
-                      and memorable.
-                    </p>
-                    <p>
-                      I like things that are created with attention to detail.
-                      When you put effort into the craft, you’ll create
-                      experiences that not only solve a problem, but leave a
-                      lasting impression on the user.
-                    </p>
-                    <p>
-                      I love sports. Mainly into football, cricket, MMA and a
-                      bit of Formula 1. Trying to get into Aussie rules footy,
-                      baseball and tennis. YNWA.
-                    </p>
-                    <p>
-                      I’m a big fan of stand up comedy, an avid gamer, love
-                      reading historical non fiction and an aspiring film maker.
-                    </p>
-                    <p>
-                      If you wanna work together or just chat about anything,
-                      lets meet for a coffee around Melbourne. Feel free to
-                      <a
-                        class="about-modal-reachout"
-                        href="mailto:chanwork94@gmail.com"
-                        >reach out</a
-                      >.
-                    </p>
-                  </div>
-
-                  <div
-                    class="about-body about-modal-body"
-                    data-tab="philosophy"
-                  >
-                    <h3 class="about-modal-section-heading">
-                      Form follows function
-                    </h3>
-                    <p>
-                      Design should always be meaningful. A good-looking
-                      interface should never come at the expense of the problem
-                      it's meant to solve.
-                    </p>
-                    <p>
-                      Steve Jobs famously said, "Design is not just what it
-                      looks like and feels like. Design is how it works."
-                    </p>
-                    <h3 class="about-modal-section-heading">Less is more</h3>
-                    <p>
-                      The beauty in usability lies in its simplicity. A product
-                      becomes easier to understand, faster to interact with, and
-                      delightful to use when you get rid of its complexity.
-                    </p>
-                    <p>
-                      Giving users more power doesn't always mean adding new
-                      things; it can also mean removing unnecessary noise.
-                    </p>
-                    <h3 class="about-modal-section-heading">
-                      Craft is in the detail
-                    </h3>
-                    <p>
-                      Small but thoughtful additions to a design add up to
-                      making a beautifully crafted product. Carefully designed
-                      microcopy, consistent behaviour, and animations all shape
-                      a product that feels trustworthy.
-                    </p>
-                    <p>
-                      Give attention to your craft, and users will respond to it
-                      without even realising the details.
-                    </p>
-                    <h3 class="about-modal-section-heading">
-                      Never stop learning
-                    </h3>
-                    <p>
-                      Design is an ever evolving craft. The tools we use, needs
-                      of the user, or the technology of our time is always
-                      changing.
-                    </p>
-                    <p>
-                      It's vital that we wake up every day filled with curiosity
-                      and a drive to learn and grow.
-                    </p>
-                    <h3 class="about-modal-section-heading">Own your work</h3>
-                    <p>
-                      I believe every team member should be an equal owner of
-                      the product. Be proud to have the burden of reponsibility.
-                      You get to be a part of building something special.
-                    </p>
-                  </div>
-
-                  <div
-                    class="about-body about-modal-body"
-                    data-tab="photography"
-                  >
-                    <div class="about-modal-photo-grid">
-                      <img
-                        src="assets/about/photography/IMG_0949.jpeg"
-                        alt="Personal photo 0949"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_3244.jpeg"
-                        alt="Personal photo 3244"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_3489.jpeg"
-                        alt="Personal photo 3489"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_3753.jpeg"
-                        alt="Personal photo 3753"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_4095.jpeg"
-                        alt="Personal photo 4095"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_6808.jpeg"
-                        alt="Personal photo 6808"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_9056.jpeg"
-                        alt="Personal photo 9056"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_9580.jpeg"
-                        alt="Personal photo 9580"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_9625.jpeg"
-                        alt="Personal photo 9625"
-                        loading="lazy"
-                      />
-                      <img
-                        src="assets/about/photography/IMG_9713.jpeg"
-                        alt="Personal photo 9713"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="about-body about-modal-body" data-tab="movie-log">
-                    <p>I'm working on this, stay tuned.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Image Popup Modal -->
       <div
         id="image-popup-modal"
@@ -1063,7 +856,7 @@
       </div>
     </div>
 
-    <script src="sky.js" defer></script>
+
     <script src="page-transition.js" defer></script>
     <script src="script-clean.js"></script>
   </body>

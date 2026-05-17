@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,45 +6,369 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta name="theme-color" content="#6EB5E5" />
-    <title>Chandima - Product Designer</title>
-    <meta http-equiv="refresh" content="0; url=index.html#about" />
-    <script>
-      // About is now presented as an in-page popup. Keep deep links working.
-      window.location.replace('index.html#about');
-    </script>
+    <meta name="theme-color" content="#ffffff" />
+    <title>About — Chandima, Product Designer</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="assets/favicon/android-chrome-512x512.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="About — Chandima, Product Designer"
+    />
+    <meta
+      property="og:description"
+      content="I create digital experiences that are intuitive, simple, and memorable."
+    />
+    <meta property="og:image" content="assets/open-graph.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="About — Chandima, Product Designer"
+    />
+    <meta
+      property="twitter:description"
+      content="I create digital experiences that are intuitive, simple, and memorable."
+    />
+    <meta property="twitter:image" content="assets/open-graph.jpg" />
+
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "v20jyh00d5");
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'v20jyh00d5');
     </script>
-    <!-- Hotjar Tracking Code for https://www.chandima.live -->
+    <!-- Hotjar -->
     <script>
-      (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:5008387,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 5008387, hjsv: 6 };
+        a = o.getElementsByTagName('head')[0];
+        r = o.createElement('script');
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
         a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLHM3Q5T0Y"></script>
+    <!-- Google tag -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-MLHM3Q5T0Y"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
-
       gtag('config', 'G-MLHM3Q5T0Y');
     </script>
   </head>
   <body>
-    <noscript>
-      <a href="index.html#about">Go to About</a>
-    </noscript>
+    <div class="case-study-page page-root about-page-root">
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="navbar-background"></div>
+        <div class="navbar-content">
+          <div class="nav-left">
+            <a href="index.html" class="logo-link">
+              <img src="assets/logo.png" alt="Chan" class="logo-image" />
+            </a>
+            <div class="nav-links">
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="about.html" class="nav-link active">About</a>
+              <a
+                href="https://www.linkedin.com/in/chanbandara"
+                class="nav-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+              <a
+                href="https://drive.google.com/file/d/1zkMgUpNFrgcPfYl2BF4a07LVxze5P_ru/view?usp=drive_link"
+                class="nav-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Resume</a
+              >
+              <a href="mailto:chanwork94@gmail.com" class="nav-link">Contact</a>
+            </div>
+          </div>
+          <span class="nav-location">Melbourne, Australia</span>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <img src="assets/menu.svg" alt="Menu" width="24" height="24" />
+          </button>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay">
+          <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="about.html" class="mobile-nav-link active">About</a>
+            <a
+              href="https://www.linkedin.com/in/chanbandara"
+              class="mobile-nav-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+            <a
+              href="https://drive.google.com/file/d/1zkMgUpNFrgcPfYl2BF4a07LVxze5P_ru/view?usp=drive_link"
+              class="mobile-nav-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Resume</a
+            >
+            <a href="mailto:chanwork94@gmail.com" class="mobile-nav-link"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <!-- About Content -->
+      <div class="case-study-page-content" id="about-modal">
+        <div class="case-study-modal-container">
+          <div class="about-modal-inner">
+            <div class="about-modal-left">
+              <div class="about-modal-photo-frame">
+                <img
+                  src="assets/about/about-image.jpeg"
+                  class="about-modal-photo"
+                  alt="Enjoying a coffee while sitting at Yarra Promenade in Melbourne"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <p class="about-modal-caption">
+                Enjoying a coffee while sitting at Yarra Promenade in Melbourne
+              </p>
+            </div>
+
+            <div class="about-modal-right">
+              <h2 class="about-title">Heya, I’m Chan!</h2>
+
+              <nav class="about-modal-nav" aria-label="About sections">
+                <span class="about-nav-slider" aria-hidden="true"></span>
+                <button
+                  type="button"
+                  class="about-modal-nav-item is-active"
+                  aria-current="page"
+                >
+                  Intro
+                </button>
+                <button type="button" class="about-modal-nav-item">
+                  Philosophy
+                </button>
+                <button type="button" class="about-modal-nav-item">
+                  Photography
+                </button>
+                <button type="button" class="about-modal-nav-item">
+                  Movie log
+                </button>
+              </nav>
+              <div class="about-modal-body-stack">
+                <div
+                  class="about-body about-modal-body is-visible is-active"
+                  data-tab="intro"
+                >
+                  <p>
+                    I create digital experiences that are intuitive, simple,
+                    and memorable.
+                  </p>
+                  <p>
+                    I like things that are created with attention to detail.
+                    When you put effort into the craft, you’ll create
+                    experiences that not only solve a problem, but leave a
+                    lasting impression on the user.
+                  </p>
+                  <p>
+                    I love sports. Mainly into football, cricket, MMA and a
+                    bit of Formula 1. Trying to get into Aussie rules footy,
+                    baseball and tennis. YNWA.
+                  </p>
+                  <p>
+                    I’m a big fan of stand up comedy, an avid gamer, love
+                    reading historical non fiction and an aspiring film maker.
+                  </p>
+                  <p>
+                    If you wanna work together or just chat about anything,
+                    lets meet for a coffee around Melbourne. Feel free to
+                    <a class="about-modal-reachout" href="mailto:chanwork94@gmail.com">reach out</a>.
+                  </p>
+                </div>
+
+                <div
+                  class="about-body about-modal-body"
+                  data-tab="philosophy"
+                >
+                  <h3 class="about-modal-section-heading">Form follows function</h3>
+                  <p>
+                    Design should always be meaningful. A good-looking
+                    interface should never come at the expense of the problem
+                    it's meant to solve.
+                  </p>
+                  <p>
+                    Steve Jobs famously said, "Design is not just what it
+                    looks like and feels like. Design is how it works."
+                  </p>
+                  <h3 class="about-modal-section-heading">Less is more</h3>
+                  <p>
+                    The beauty in usability lies in its simplicity. A product
+                    becomes easier to understand, faster to interact with, and
+                    delightful to use when you get rid of its complexity.
+                  </p>
+                  <p>
+                    Giving users more power doesn't always mean adding new
+                    things; it can also mean removing unnecessary noise.
+                  </p>
+                  <h3 class="about-modal-section-heading">Craft is in the detail</h3>
+                  <p>
+                    Small but thoughtful additions to a design add up to
+                    making a beautifully crafted product. Carefully designed
+                    microcopy, consistent behaviour, and animations all shape
+                    a product that feels trustworthy.
+                  </p>
+                  <p>
+                    Give attention to your craft, and users will respond to it
+                    without even realising the details.
+                  </p>
+                  <h3 class="about-modal-section-heading">Never stop learning</h3>
+                  <p>
+                    Design is an ever evolving craft. The tools we use, needs
+                    of the user, or the technology of our time is always
+                    changing.
+                  </p>
+                  <p>
+                    It's vital that we wake up every day filled with curiosity
+                    and a drive to learn and grow.
+                  </p>
+                  <h3 class="about-modal-section-heading">Own your work</h3>
+                  <p>
+                    I believe every team member should be an equal owner of
+                    the product. Be proud to have the burden of reponsibility.
+                    You get to be a part of building something special.
+                  </p>
+                </div>
+
+                <div
+                  class="about-body about-modal-body"
+                  data-tab="photography"
+                >
+                  <div class="about-modal-photo-grid">
+                    <img src="assets/about/photography/IMG_0949.jpeg" alt="Personal photo 0949" loading="lazy" />
+                    <img src="assets/about/photography/IMG_3244.jpeg" alt="Personal photo 3244" loading="lazy" />
+                    <img src="assets/about/photography/IMG_3489.jpeg" alt="Personal photo 3489" loading="lazy" />
+                    <img src="assets/about/photography/IMG_3753.jpeg" alt="Personal photo 3753" loading="lazy" />
+                    <img src="assets/about/photography/IMG_4095.jpeg" alt="Personal photo 4095" loading="lazy" />
+                    <img src="assets/about/photography/IMG_6808.jpeg" alt="Personal photo 6808" loading="lazy" />
+                    <img src="assets/about/photography/IMG_9056.jpeg" alt="Personal photo 9056" loading="lazy" />
+                    <img src="assets/about/photography/IMG_9580.jpeg" alt="Personal photo 9580" loading="lazy" />
+                    <img src="assets/about/photography/IMG_9625.jpeg" alt="Personal photo 9625" loading="lazy" />
+                    <img src="assets/about/photography/IMG_9713.jpeg" alt="Personal photo 9713" loading="lazy" />
+                  </div>
+                </div>
+
+                <div class="about-body about-modal-body" data-tab="movie-log">
+                  <p>I'm working on this, stay tuned.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Popup Modal -->
+    <div id="image-popup-modal" class="image-popup-modal" style="display: none">
+      <div class="image-popup-overlay"></div>
+      <button class="image-popup-close" aria-label="Close image popup">
+        <img src="assets/close-button.svg" alt="Close" />
+      </button>
+      <img id="popup-image" src="" alt="" class="popup-image" />
+    </div>
+
+    <script src="page-transition.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Sequential entry animation
+        var elementsToAnimate = [
+          { selector: '.navbar', delay: 300 },
+          { selector: '.about-modal-left', delay: 500 },
+          { selector: '.about-title', delay: 600 },
+          { selector: '.about-modal-nav', delay: 700 },
+          { selector: '.about-modal-body-stack', delay: 800 }
+        ];
+
+        elementsToAnimate.forEach(function (item) {
+          var element = document.querySelector(item.selector);
+          if (element) {
+            element.classList.add('fade-blur-up');
+            setTimeout(function () {
+              element.classList.add('animate');
+            }, item.delay);
+          }
+        });
+
+      });
+    </script>
+    <script src="script-clean.js" defer></script>
   </body>
 </html>

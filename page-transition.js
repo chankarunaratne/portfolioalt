@@ -35,14 +35,67 @@
     root.classList.remove("page-leave");
   }
 
-  function navigateWithFade(href) {
+  function navigateWithFade(href, isPopstate = false) {
     const root = getPageRoot();
     root.classList.add("page-leave");
 
-    // Match CSS transition duration.
-    window.setTimeout(() => {
-      window.location.href = href;
-    }, 180);
+    fetch(href)
+      .then(r => r.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const newDoc = parser.parseFromString(html, 'text/html');
+        
+        window.setTimeout(() => {
+          const newRoot = newDoc.querySelector('.page-root');
+          if (!newRoot) {
+            window.location.href = href;
+            return;
+          }
+
+          document.title = newDoc.title;
+          
+          const navbar = root.querySelector('.navbar');
+          
+          // Remove children of root EXCEPT navbar
+          Array.from(root.children).forEach(child => {
+            if (child !== navbar) {
+              child.remove();
+            }
+          });
+          
+          // Append new children EXCEPT navbar
+          Array.from(newRoot.children).forEach(child => {
+            if (!child.classList.contains('navbar')) {
+              root.appendChild(child.cloneNode(true));
+            }
+          });
+          
+          // Update root class list
+          root.className = newRoot.className;
+
+          // Clone navbar to remove old event listeners
+          const currentNavbar = root.querySelector('.navbar');
+          if (currentNavbar) {
+            const clonedNavbar = currentNavbar.cloneNode(true);
+            currentNavbar.replaceWith(clonedNavbar);
+          }
+          
+          // Push state
+          if (!isPopstate) {
+            history.pushState(null, '', href);
+          }
+          
+          // Trigger scripts initialization
+          window.dispatchEvent(new Event('portfolio:init'));
+          
+          // Reveal
+          window.scrollTo(0, 0);
+          markEntered();
+        }, 180);
+      })
+      .catch(() => {
+        window.location.href = href;
+      });
   }
 
   window.addEventListener("pageshow", () => {
@@ -69,6 +122,11 @@
 
       e.preventDefault();
       navigateWithFade(href);
+    });
+    
+    // Handle back/forward navigation
+    window.addEventListener("popstate", () => {
+      navigateWithFade(window.location.href, true);
     });
   });
 })();
