@@ -63,6 +63,7 @@ function initPortfolio() {
   });
   // Navbar remains static at top of page; no scroll background behavior
 
+
   // Logo click handler for home navigation
   const logoLink = document.querySelector('.logo-link');
   if (logoLink) {
