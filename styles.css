@@ -235,17 +235,17 @@ body {
   font-size: 18px;
   font-weight: 400;
   line-height: 1;
-  color: #1a1a1e;
+  color: #181817;
   margin: 0;
   margin-top: 12px;
 }
 
 /* Design System Variables */
 :root {
-  --text-primary: #303030;
-  --text-muted: #4a5565;
-  --text-subdued: #818898;
-  --text-normal: #666d80;
+  --text-primary: #181817;
+  --text-muted: #72726e;
+  --text-subdued: #72726e;
+  --text-normal: #72726e;
   --bg-normal: #f6f8fa;
   --bg-pressed: #dfe1e7;
   --bg-white: #F7F7F4;
@@ -982,7 +982,7 @@ body {
   line-height: 38px;
   font-weight: 500;
   letter-spacing: -0.02em;
-  color: var(--text-muted);
+  color: var(--text-primary);
   margin: 0;
   font-family:
     'Inter Display',
@@ -1029,7 +1029,7 @@ body {
 }
 
 .highlight-text {
-  color: #1a1a1e;
+  color: #181817;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
@@ -2047,7 +2047,7 @@ img.card-logo {
   font-size: 16px;
   line-height: 26px;
   font-weight: 400;
-  color: #818898;
+  color: var(--text-subdued);
   text-align: left;
   margin: 0;
   margin-top: 12px;
@@ -2154,7 +2154,7 @@ img.card-logo {
   font-size: 16px;
   line-height: 26px;
   font-weight: 400;
-  color: #666d80;
+  color: var(--text-normal);
   margin: 0;
 }
 
@@ -2292,7 +2292,7 @@ img.card-logo {
   font-size: 16px;
   line-height: 26px;
   font-weight: 400;
-  color: #666d80;
+  color: var(--text-normal);
   margin: 0;
   margin-top: 12px;
   text-align: left;
@@ -2361,7 +2361,7 @@ img.card-logo {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #36394a;
+  color: var(--text-primary);
   margin: 0;
   white-space: nowrap;
 }
@@ -2370,7 +2370,7 @@ img.card-logo {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #666d80;
+  color: var(--text-normal);
   margin: 0;
   white-space: nowrap;
 }
@@ -2378,7 +2378,7 @@ img.card-logo {
 .experience-location {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  color: #818898;
+  color: var(--text-subdued);
 }
 
 .experience-description {
@@ -2389,7 +2389,7 @@ img.card-logo {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 22px;
-  color: #666d80;
+  color: var(--text-normal);
   margin: 0;
   width: 640px;
 }
@@ -2431,7 +2431,7 @@ img.card-logo {
   font-size: 16px;
   line-height: 26px;
   font-weight: 400;
-  color: #666d80;
+  color: var(--text-normal);
   margin: 0;
   margin-top: 12px;
   text-align: left;
@@ -2494,7 +2494,7 @@ img.card-logo {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #36394a;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -2506,14 +2506,14 @@ img.card-logo {
 }
 
 .testimonial-author-name a:hover {
-  color: #818898;
+  color: var(--text-subdued);
 }
 
 .testimonial-author-role {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #666d80;
+  color: var(--text-normal);
   margin: 0;
 }
 
@@ -2532,7 +2532,7 @@ img.card-logo {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 22px;
-  color: #525866;
+  color: var(--text-normal);
   margin: 0;
   width: 100%;
   max-width: 640px;
@@ -2583,7 +2583,7 @@ img.card-logo {
 .writing-description {
   font-size: 16px;
   line-height: 24px;
-  color: #818898;
+  color: var(--text-subdued);
   margin: 0;
   width: 320px; /* Added fixed width */
 }
@@ -2650,7 +2650,7 @@ img.card-logo {
   font-weight: 400; /* Regular */
   font-size: 14px;
   line-height: 20px;
-  color: #666d80; /* Text/Normal [500] */
+  color: var(--text-normal); /* Text/Normal [500] */
   margin: 0;
 }
 
@@ -2725,7 +2725,7 @@ img.card-logo {
 .footer-thankyou {
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
-  color: #666d80;
+  color: var(--text-normal);
   text-transform: uppercase;
   text-align: center;
   margin: 0;
@@ -2734,7 +2734,7 @@ img.card-logo {
 .footer-credit {
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
-  color: #666d80;
+  color: var(--text-normal);
   text-transform: uppercase;
   text-align: center;
   margin: 0;
@@ -2751,7 +2751,7 @@ img.card-logo {
 .footer-link {
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
-  color: #666d80;
+  color: var(--text-normal);
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 400;
@@ -2764,7 +2764,7 @@ img.card-logo {
 .footer-copyright {
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
-  color: #666d80;
+  color: var(--text-normal);
   text-transform: uppercase;
   font-weight: 400;
 }
@@ -4168,11 +4168,11 @@ img.card-logo {
 }
 
 .case-study-page .mobile-nav-link {
-  color: #353c47;
+  color: #72726e;
 }
 
 .case-study-page .mobile-nav-link:hover {
-  color: #1a1a1a;
+  color: #181817;
   background-color: rgba(0, 0, 0, 0.04);
 }
 
@@ -4196,7 +4196,7 @@ img.card-logo {
     sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #2c2c2c;
+  color: #181817;
   text-decoration: none;
   border-radius: 1000px;
   margin-bottom: 32px;
