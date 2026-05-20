@@ -37,7 +37,15 @@
 
   function navigateWithFade(href, isPopstate = false) {
     const root = getPageRoot();
-    root.classList.add("page-leave");
+    const navbar = root.querySelector('.navbar');
+
+    // Fade out only non-navbar content (keep navbar visible throughout)
+    Array.from(root.children).forEach(child => {
+      if (child !== navbar) {
+        child.style.transition = 'opacity 180ms ease';
+        child.style.opacity = '0';
+      }
+    });
 
     fetch(href)
       .then(r => r.text())
@@ -54,37 +62,39 @@
 
           document.title = newDoc.title;
           
-          const navbar = root.querySelector('.navbar');
-          
+          // Swap page-specific classes before inserting content (prevents flash)
+          root.classList.remove('home', 'case-study-page', 'about-page-root');
+          newRoot.className.split(/\s+/).forEach(cls => {
+            if (cls && cls !== 'page-root' && cls !== 'page-ready' && cls !== 'page-leave') {
+              root.classList.add(cls);
+            }
+          });
+
           // Remove children of root EXCEPT navbar
           Array.from(root.children).forEach(child => {
             if (child !== navbar) {
               child.remove();
             }
           });
-          
-          // Append new children EXCEPT navbar
+
+          // Append new children EXCEPT navbar (clear fade-out inline styles)
           Array.from(newRoot.children).forEach(child => {
             if (!child.classList.contains('navbar')) {
-              root.appendChild(child.cloneNode(true));
+              const cloned = child.cloneNode(true);
+              cloned.style.opacity = '';
+              cloned.style.transition = '';
+              root.appendChild(cloned);
             }
           });
-          
-          // Update root class list
-          root.className = newRoot.className;
-
-          // Clone navbar to remove old event listeners
-          const currentNavbar = root.querySelector('.navbar');
-          if (currentNavbar) {
-            const clonedNavbar = currentNavbar.cloneNode(true);
-            currentNavbar.replaceWith(clonedNavbar);
-          }
           
           // Push state
           if (!isPopstate) {
             history.pushState(null, '', href);
           }
           
+          // Signal SPA re-init (so initPortfolio skips navbar animation)
+          window.__spaTransition = true;
+
           // Trigger scripts initialization
           window.dispatchEvent(new Event('portfolio:init'));
           
@@ -107,6 +117,7 @@
     markEntered();
 
     document.addEventListener("click", (e) => {
+      if (e.defaultPrevented) return;
       const target = e.target;
       if (!(target instanceof Element)) return;
 

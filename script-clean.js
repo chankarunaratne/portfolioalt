@@ -26,6 +26,10 @@ function initPortfolio() {
     }
   }
 
+  // Detect if this is a SPA re-init (navbar is preserved, don't re-animate it)
+  const isSpaTransition = window.__spaTransition || false;
+  window.__spaTransition = false;
+
   // Sequential spring blur animation system
   const elementsToAnimate = [
     { selector: '.navbar', delay: 300 },
@@ -42,20 +46,25 @@ function initPortfolio() {
     { selector: '.case-study-intro', delay: 500 },
     { selector: '.case-study-header', delay: 600 },
     { selector: '.case-study-app-card', delay: 700 },
-    { selector: '.case-study-text-container > .case-study-featured-image', delay: 800 },
+    { selector: '.case-study-page-content .case-study-text-container > .case-study-featured-image', delay: 800 },
     { selector: '.case-study-achievements', delay: 900 },
     { selector: '.case-study-sections', delay: 1000 },
-    { selector: '.case-study-description', delay: 1100 }
+    { selector: '.case-study-description', delay: 1100 },
+    // About page specific selectors (for SPA navigation to about.html)
+    { selector: '.about-modal-left', delay: 500 },
+    { selector: '.about-title', delay: 600 },
+    { selector: '.about-modal-nav', delay: 700 },
+    { selector: '.about-modal-body-stack', delay: 800 }
   ];
 
   // Start sequential animations
   elementsToAnimate.forEach(({ selector, delay }) => {
+    // Skip navbar animation during SPA transitions (it's already visible)
+    if (isSpaTransition && selector === '.navbar') return;
+
     const element = document.querySelector(selector);
     if (element) {
-      // Apply initial animation class and transitions
       element.classList.add('fade-blur-up');
-
-      // Trigger animation after delay
       setTimeout(() => {
         element.classList.add('animate');
       }, delay);
@@ -63,101 +72,53 @@ function initPortfolio() {
   });
   // Navbar remains static at top of page; no scroll background behavior
 
-
-  // Logo click handler for home navigation
-  const logoLink = document.querySelector('.logo-link');
-  if (logoLink) {
-    logoLink.addEventListener('click', function (e) {
-      const href = this.getAttribute('href') || '';
-      const isHome =
-        window.location.pathname.endsWith('/') ||
-        window.location.pathname.endsWith('/index.html') ||
-        window.location.pathname.endsWith('index.html');
-
-      // If we're already on home, keep the existing smooth scroll-to-top behavior.
-      if (
-        isHome &&
-        (href === 'index.html' || href === './index.html' || href === '/')
-      ) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  }
-
-  // Navigation links functionality
-  const allScrollLinks = document.querySelectorAll(
-    '.nav-link, .highlight-text',
-  );
-  allScrollLinks.forEach((link) => {
-    link.addEventListener('click', function (e) {
-      const href = this.getAttribute('href') || '';
-
-      // Smooth-scroll for in-page anchor navigation
-      if (href.startsWith('#') && href.length > 1) {
-        const targetId = href.slice(1);
-        const targetEl = document.getElementById(targetId);
-        if (targetEl) {
-          e.preventDefault();
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      } else if (href === '#' || href === '') {
-        // Keep previous behavior for placeholder links
-        e.preventDefault();
-      }
-
-      // Handle active state only for navbar links
-      if (this.classList.contains('nav-link')) {
-        const desktopNavLinks = document.querySelectorAll('.nav-link');
-        desktopNavLinks.forEach((l) => l.classList.remove('active'));
-        this.classList.add('active');
-      }
-    });
-  });
-
   // Re-define navLinks for mobile menu logic to maintain original behavior
   const navLinks = document.querySelectorAll('.nav-link');
-
-  // Mobile menu functionality
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
   // Helper usable outside the mobile-menu init block (so other handlers can close menu safely)
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
   function closeMobileMenuIfPresent() {
     if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
     if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
   }
 
-  if (mobileMenuToggle && mobileMenuOverlay) {
-    // Toggle mobile menu
-    mobileMenuToggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      const isActive = mobileMenuToggle.classList.contains('active');
+  // Guard: only attach navbar listeners once (SPA transitions preserve the navbar)
+  const navbarEl = document.querySelector('.navbar');
+  if (navbarEl && !navbarEl.__navInitialized) {
+    navbarEl.__navInitialized = true;
 
-      if (isActive) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-    });
+    // Logo click handler for home navigation
+    const logoLink = document.querySelector('.logo-link');
+    if (logoLink) {
+      logoLink.addEventListener('click', function (e) {
+        const href = this.getAttribute('href') || '';
+        const isHome =
+          window.location.pathname.endsWith('/') ||
+          window.location.pathname.endsWith('/index.html') ||
+          window.location.pathname.endsWith('index.html');
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function (e) {
-      if (
-        mobileMenuOverlay.classList.contains('active') &&
-        !mobileMenuOverlay.contains(e.target) &&
-        !mobileMenuToggle.contains(e.target)
-      ) {
-        closeMobileMenu();
-      }
-    });
+        // If we're already on home, keep the existing smooth scroll-to-top behavior.
+        if (
+          isHome &&
+          (href === 'index.html' || href === './index.html' || href === '/')
+        ) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
 
-    // Handle mobile nav link clicks
-    mobileNavLinks.forEach((link) => {
+    // Navigation links functionality
+    const allScrollLinks = document.querySelectorAll(
+      '.nav-link, .highlight-text',
+    );
+    allScrollLinks.forEach((link) => {
       link.addEventListener('click', function (e) {
         const href = this.getAttribute('href') || '';
 
+        // Smooth-scroll for in-page anchor navigation
         if (href.startsWith('#') && href.length > 1) {
           const targetId = href.slice(1);
           const targetEl = document.getElementById(targetId);
@@ -166,41 +127,92 @@ function initPortfolio() {
             targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         } else if (href === '#' || href === '') {
+          // Keep previous behavior for placeholder links
           e.preventDefault();
         }
 
-        // Remove active class from all mobile links
-        mobileNavLinks.forEach((l) => l.classList.remove('active'));
-        // Remove active class from desktop links too
-        navLinks.forEach((l) => l.classList.remove('active'));
-
-        // Add active class to clicked mobile link
-        this.classList.add('active');
-
-        // Add active class to corresponding desktop link
-        const linkText = this.textContent;
-        const correspondingDesktopLink = Array.from(navLinks).find(
-          (link) => link.textContent === linkText,
-        );
-        if (correspondingDesktopLink) {
-          correspondingDesktopLink.classList.add('active');
+        // Handle active state only for navbar links
+        if (this.classList.contains('nav-link')) {
+          const desktopNavLinks = document.querySelectorAll('.nav-link');
+          desktopNavLinks.forEach((l) => l.classList.remove('active'));
+          this.classList.add('active');
         }
-
-        // Close mobile menu after selection
-        closeMobileMenu();
       });
     });
 
-    function openMobileMenu() {
-      mobileMenuToggle.classList.add('active');
-      mobileMenuOverlay.classList.add('active');
-    }
+    if (mobileMenuToggle && mobileMenuOverlay) {
+      // Toggle mobile menu
+      mobileMenuToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isActive = mobileMenuToggle.classList.contains('active');
 
-    function closeMobileMenu() {
-      mobileMenuToggle.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
+        if (isActive) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function (e) {
+        if (
+          mobileMenuOverlay.classList.contains('active') &&
+          !mobileMenuOverlay.contains(e.target) &&
+          !mobileMenuToggle.contains(e.target)
+        ) {
+          closeMobileMenu();
+        }
+      });
+
+      // Handle mobile nav link clicks
+      mobileNavLinks.forEach((link) => {
+        link.addEventListener('click', function (e) {
+          const href = this.getAttribute('href') || '';
+
+          if (href.startsWith('#') && href.length > 1) {
+            const targetId = href.slice(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          } else if (href === '#' || href === '') {
+            e.preventDefault();
+          }
+
+          // Remove active class from all mobile links
+          mobileNavLinks.forEach((l) => l.classList.remove('active'));
+          // Remove active class from desktop links too
+          navLinks.forEach((l) => l.classList.remove('active'));
+
+          // Add active class to clicked mobile link
+          this.classList.add('active');
+
+          // Add active class to corresponding desktop link
+          const linkText = this.textContent;
+          const correspondingDesktopLink = Array.from(navLinks).find(
+            (link) => link.textContent === linkText,
+          );
+          if (correspondingDesktopLink) {
+            correspondingDesktopLink.classList.add('active');
+          }
+
+          // Close mobile menu after selection
+          closeMobileMenu();
+        });
+      });
+
+      function openMobileMenu() {
+        mobileMenuToggle.classList.add('active');
+        mobileMenuOverlay.classList.add('active');
+      }
+
+      function closeMobileMenu() {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+      }
     }
-  }
+  } // end navbar init guard
 
   // About Modal Functionality (reuses the same modal CSS classes as case studies)
   const aboutModal = document.getElementById('about-modal');

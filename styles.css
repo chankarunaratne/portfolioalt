@@ -174,6 +174,25 @@ body {
   filter: blur(8px);
 }
 
+/* Case study page: hidden until JS adds fade-blur-up + animate */
+.case-study-page .case-study-intro,
+.case-study-page .case-study-header,
+.case-study-page .case-study-app-card,
+.case-study-page .case-study-text-container > .case-study-featured-image,
+.case-study-page .case-study-achievements,
+.case-study-page .case-study-sections,
+.case-study-page .case-study-description {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(8px);
+}
+
+.case-study-page .fade-blur-up.animate {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
 /* Container for staggered animations */
 .stagger-container {
   opacity: 0;
