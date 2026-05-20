@@ -225,17 +225,28 @@
 
         <!-- Case Studies Section -->
         <section class="case-studies">
+          <!-- Temporary testing tool for bottom corner radius -->
+          <div class="radius-tester-widget">
+            <span class="radius-tester-title">Test Bottom Radius:</span>
+            <div class="radius-tester-controls">
+              <button class="radius-tester-btn" id="radius-minus-btn" aria-label="Decrease radius">−</button>
+              <input type="number" class="radius-tester-input" id="radius-input-val" value="20" min="0" max="100" />
+              <span class="radius-tester-unit">px</span>
+              <button class="radius-tester-btn" id="radius-plus-btn" aria-label="Increase radius">+</button>
+            </div>
+          </div>
+
           <div class="cards-container">
             <div class="case-card" data-case-study="docswell">
+              <div class="card-thumbnail-wrapper">
+                <img src="assets/docswell-thumbnail.png" alt="Docswell thumbnail" class="card-thumbnail" />
+              </div>
               <div class="card-left">
                 <img src="assets/docswell-case-study/product-logo.png" alt="Docswell logo" class="card-logo" />
                 <div class="card-details">
                   <h3 class="card-title">Docswell</h3>
                   <p class="card-role">Product Designer</p>
                 </div>
-              </div>
-              <div class="card-right">
-                <p class="card-cta">Open case study</p>
               </div>
             </div>
             
@@ -247,9 +258,6 @@
                   <p class="card-role">Founder + Maker</p>
                 </div>
               </div>
-              <div class="card-right">
-                <p class="card-cta">Open case study</p>
-              </div>
             </div>
             
             <div class="case-card coming-soon" data-case-study="jiffyhive">
@@ -260,9 +268,6 @@
                   <p class="card-role">Founding Designer</p>
                 </div>
               </div>
-              <div class="card-right">
-                <p class="card-cta">Open case study</p>
-              </div>
             </div>
             
             <div class="case-card coming-soon" data-case-study="jiffyhive">
@@ -272,9 +277,6 @@
                   <h3 class="card-title">Jiffyhive</h3>
                   <p class="card-role">Founding Designer</p>
                 </div>
-              </div>
-              <div class="card-right">
-                <p class="card-cta">Open case study</p>
               </div>
             </div>
           </div>
