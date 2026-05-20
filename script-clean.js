@@ -1917,41 +1917,6 @@ function initPortfolio() {
       if (aboutModalOpen) closeAboutModal();
     }
   });
-
-  // Temporary testing tool for bottom corner radius
-  const radiusInput = document.getElementById('radius-input-val');
-  const radiusMinusBtn = document.getElementById('radius-minus-btn');
-  const radiusPlusBtn = document.getElementById('radius-plus-btn');
-  const thumbnailWrappers = document.querySelectorAll('.card-thumbnail-wrapper');
-
-  if (radiusInput && thumbnailWrappers.length) {
-    function updateRadius(val) {
-      val = Math.max(0, Math.min(100, parseInt(val) || 0));
-      radiusInput.value = val;
-      
-      thumbnailWrappers.forEach(wrapper => {
-        wrapper.style.borderBottomLeftRadius = `${val}px`;
-        wrapper.style.borderBottomRightRadius = `${val}px`;
-      });
-    }
-
-    // Set initial value (starts at 20)
-    updateRadius(radiusInput.value);
-
-    radiusMinusBtn.addEventListener('click', () => {
-      const currentVal = parseInt(radiusInput.value) || 0;
-      updateRadius(currentVal - 2);
-    });
-
-    radiusPlusBtn.addEventListener('click', () => {
-      const currentVal = parseInt(radiusInput.value) || 0;
-      updateRadius(currentVal + 2);
-    });
-
-    radiusInput.addEventListener('input', (e) => {
-      updateRadius(e.target.value);
-    });
-  }
 }
 
 document.addEventListener('DOMContentLoaded', initPortfolio);
