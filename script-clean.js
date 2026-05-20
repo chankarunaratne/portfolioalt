@@ -942,6 +942,7 @@ function initPortfolio() {
   const caseStudyData = {
     docswell: {
       logo: 'assets/docswell-case-study/product-logo.png',
+      featuredImage: 'assets/docswell-case-study/docswell-featured.png',
       company: 'Docswell',
       role: 'Product Designer',
       achievements: [
@@ -960,11 +961,7 @@ function initPortfolio() {
       roleText: `
         <p style="margin-bottom: 16px;">I was the sole designer on the team and wore multiple hats. I led user research, design system, and end-to-end UI design. I also played a pivotal role in product decisions while collaborating closely with the Founder and COO.</p>
       `,
-      description: `
-        <div class="case-study-images">
-          <img src="assets/docswell-case-study/docswell-export-dashboard.png" alt="Docswell dashboard" class="case-study-image" data-image-popup="assets/docswell-case-study/docswell-export-dashboard.png" />
-        </div>
-      `,
+      description: '',
       outcome: `
         <ul>
             <li>Redesigned practice and client portals, to streamline complex clinical workflows, resulting in a <span class="case-study-emphasis">28% reduction in task completion time</span> for practitioners.</li>
