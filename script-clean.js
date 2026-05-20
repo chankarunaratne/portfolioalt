@@ -43,8 +43,7 @@ function initPortfolio() {
     { selector: '.testimonials-section', delay: SHOW_VIDEO_INTRO ? 1500 : 1300 },
     { selector: '.footer-section', delay: SHOW_VIDEO_INTRO ? 1700 : 1500 },
     // Case study specific selectors
-    { selector: '.case-study-intro', delay: 500 },
-    { selector: '.case-study-header', delay: 600 },
+    { selector: '.case-study-header', delay: 500 },
     { selector: '.case-study-app-card', delay: 700 },
     { selector: '.case-study-page-content .case-study-text-container > .case-study-featured-image', delay: 800 },
     { selector: '.case-study-achievements', delay: 900 },

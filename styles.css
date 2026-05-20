@@ -175,7 +175,6 @@ body {
 }
 
 /* Case study page: hidden until JS adds fade-blur-up + animate */
-.case-study-page .case-study-intro,
 .case-study-page .case-study-header,
 .case-study-page .case-study-app-card,
 .case-study-page .case-study-text-container > .case-study-featured-image,
@@ -268,6 +267,8 @@ body {
   --bg-normal: #f6f8fa;
   --bg-pressed: #dfe1e7;
   --bg-white: #F7F7F4;
+  --app-card-surface: #F0F0EC;
+  --app-card-border: #E6E6E1;
   --gradient-from: #949494;
   --gradient-to: #b3b3b399;
   --navbar-bg: rgba(254, 254, 254, 0.65);
@@ -1492,15 +1493,15 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
-  font-variation-settings: 'opsz' 32;
+  font-variation-settings: 'opsz' 14;
   color: var(--text-normal);
   margin: 0;
 }
 
 .case-study-app-card {
   width: 100%;
-  background-color: #f6f8fa;
-  border: 1px solid #eceff3;
+  background-color: var(--app-card-surface);
+  border: 1px solid var(--app-card-border);
   border-radius: 14px;
   overflow: hidden;
 }
@@ -4293,7 +4294,8 @@ img.card-logo {
   max-width: 832px;
   width: 90%;
   margin: 0 auto;
-  padding: 40px 0 120px;
+  /* Match .hero margin-top (8px) + .hero-content padding-top (35px) */
+  padding: 43px 0 120px;
 }
 
 #about-modal.case-study-page-content {
@@ -4301,7 +4303,6 @@ img.card-logo {
 }
 
 /* Constrain text to 640px within page */
-.case-study-page-content .case-study-intro,
 .case-study-page-content .case-study-header,
 .case-study-page-content .case-study-title,
 .case-study-page-content .case-study-subheading,
@@ -4317,10 +4318,6 @@ img.card-logo {
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
-}
-
-.case-study-page-content .case-study-intro {
-  align-items: flex-start;
 }
 
 /* Ensure proper text colors on case study page */
@@ -4395,7 +4392,6 @@ img.card-logo {
     margin-right: 0;
   }
 
-  .case-study-page-content .case-study-intro,
   .case-study-page-content .case-study-header,
   .case-study-page-content .case-study-title,
   .case-study-page-content .case-study-subheading,
