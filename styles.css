@@ -1543,13 +1543,7 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  cursor: zoom-in;
   border-radius: 8px;
-  transition: opacity 0.2s ease;
-}
-
-.case-study-featured-image img:hover {
-  opacity: 0.9;
 }
 
 /* Achievement Cards */
@@ -1751,14 +1745,8 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  cursor: zoom-in;
   border-radius: 8px;
-  transition: opacity 0.2s ease;
   margin-bottom: 8px;
-}
-
-.case-study-image:hover {
-  opacity: 0.9;
 }
 
 .case-study-more-content {
