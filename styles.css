@@ -253,48 +253,81 @@ body {
   font-size: 18px;
   font-weight: 400;
   line-height: 1;
-  color: #181817;
+  color: var(--text-primary);
   margin: 0;
   margin-top: 12px;
 }
 
 /* Design System Variables */
 :root {
-  --text-primary: #181817;
-  --text-muted: #72726e;
-  --text-subdued: #72726e;
-  --text-normal: #72726e;
-  --bg-normal: #f6f8fa;
-  --bg-pressed: #dfe1e7;
-  --bg-white: #F7F7F4;
-  --app-card-surface: #F0F0EC;
-  --app-card-border: #E6E6E1;
+  /* --- Primitives --- */
+  --white:     #ffffff;
+  
+  /* --- Gray (warm neutral) ---
+     Anchored at surface default #f7f7f4 (gray-100).
+     OKLCH generation: perceptual lightness ladder, hue locked at ~106°
+     (warm paper from anchor), chroma held low and tapered on dark stops.
+     gray-50/100/200 = surfaces; gray-400+ = text & borders. */
+  --gray-50:   #fdfdfa; /* raised / inset highlight — lightest surface */
+  --gray-100:  #f7f7f4; /* surface default — page & panel background */
+  --gray-150:  #f0f0ed; /* sunken card background (Option 1) */
+  --gray-200:  #e6e6e3; /* borders, dividers, sunken wells */
+  --gray-300:  #d4d4d2; /* strong borders, disabled fills */
+  --gray-400:  #8f8f8b; /* placeholder, disabled text (≥3:1 on gray-100) */
+  --gray-500:  #72726e; /* secondary text (≥4.5:1 on gray-100) */
+  --gray-600:  #545452; /* tertiary emphasis */
+  --gray-700:  #41413f; /* dark borders, muted chrome */
+  --gray-800:  #282827; /* raised dark surfaces */
+  --gray-900:  #181817; /* primary text on light surfaces */
+
+  /* --- New Semantic Variables --- */
+  --color-background:         var(--gray-100);  /* page background */
+  --color-surface:            var(--white);     /* cards, modals — lifts off warm bg */
+  --color-surface-raised:     var(--gray-50);   /* subtle elevation (dropdowns, wells) */
+  --color-surface-overlay:    var(--white);     /* popovers, toasts */
+  --color-surface-sunken:     var(--gray-200);  /* inset panels, code blocks */
+  --color-surface-sunken-soft: var(--gray-150); /* soft sunken surfaces (app cards) */
+
+  --color-foreground:         var(--gray-900);  /* primary body text */
+  --color-foreground-muted:   var(--gray-500);  /* secondary text, labels */
+  --color-foreground-subtle:  var(--gray-400);  /* placeholder, disabled */
+
+  /* Legacy Semantic Mappings (for backwards-compatibility) */
+  --text-primary: var(--color-foreground);
+  --text-muted: var(--color-foreground-muted);
+  --text-subdued: var(--color-foreground-muted);
+  --text-normal: var(--color-foreground-muted);
+  --bg-normal: var(--color-surface-sunken-soft);
+  --bg-pressed: var(--color-surface-sunken);
+  --bg-white: var(--color-background);
+  --app-card-surface: var(--color-surface-sunken-soft);
+  --app-card-border: var(--color-surface-sunken);
   --gradient-from: #949494;
   --gradient-to: #b3b3b399;
   --navbar-bg: rgba(254, 254, 254, 0.65);
   --navbar-bg-scrolled: rgba(254, 254, 254, 0.75);
-  --hero-bg: #f6f8fa;
-  --hero-border: #eceff3;
-  --video-intro-bg: rgba(254, 255, 255, 0.95);
-  --video-intro-border: #eceff3;
+  --hero-bg: var(--color-surface-sunken-soft);
+  --hero-border: var(--color-surface-sunken);
+  --video-intro-bg: rgba(253, 253, 250, 0.95); /* based on --gray-50 */
+  --video-intro-border: var(--color-surface-sunken);
   --modal-overlay: rgba(0, 0, 0, 0.8);
-  --card-border: #eceff3;
-  --border-regular: #eceff3;
+  --card-border: var(--color-surface-sunken);
+  --border-regular: var(--color-surface-sunken);
   --card-role-text: rgba(0, 0, 0, 0.6);
   --article-title: var(--text-muted);
-  --article-button-bg: #ffffff;
+  --article-button-bg: var(--white);
   --article-button-border: rgba(18, 55, 105, 0.08);
   --article-button-shadow: rgba(164, 172, 185, 0.24);
-  --article-button-hover: #f8f9fa;
-  --article-divider: #eceff3;
-  --testimonial-bg: #ffffff;
+  --article-button-hover: var(--color-surface-raised);
+  --article-divider: var(--color-surface-sunken);
+  --testimonial-bg: var(--white);
   --testimonial-name: #000000;
-  --testimonial-border: #eceff3;
+  --testimonial-border: var(--color-surface-sunken);
   --nav-link: rgba(0, 0, 0, 0.4);
   --nav-link-active: rgba(0, 0, 0, 0.7);
   --nav-link-hover: rgba(0, 0, 0, 0.8);
   --nav-location: rgba(0, 0, 0, 0.3);
-  --card-bg: #ffffff;
+  --card-bg: var(--white);
   --card-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
@@ -1049,7 +1082,7 @@ body {
 }
 
 .highlight-text {
-  color: #181817;
+  color: var(--text-primary);
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
@@ -1142,7 +1175,7 @@ body {
 
 .watch-btn {
   background: var(--bg-normal);
-  border: 1px solid #eceff3;
+  border: 1px solid var(--border-regular);
   border-radius: 8px;
   padding: 6px 16px;
   font-size: 14px;
@@ -2261,7 +2294,7 @@ img.card-logo {
 }
 
 .product-button-disabled {
-  background-color: #eceff3;
+  background-color: var(--border-regular);
   border: none;
   border-radius: 60px;
   padding: 6px 8px;
@@ -2626,7 +2659,7 @@ img.card-logo {
   max-width: 90%;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 16px; /* 2xl in Tailwind */
-  border: 1px solid #eceff3;
+  border: 1px solid var(--border-regular);
   padding: 16px; /* py-4 (gap-4 implies padding around content) */
   box-sizing: border-box;
 }
@@ -4201,11 +4234,11 @@ img.card-logo {
 }
 
 .case-study-page .mobile-nav-link {
-  color: #72726e;
+  color: var(--text-muted);
 }
 
 .case-study-page .mobile-nav-link:hover {
-  color: #181817;
+  color: var(--text-primary);
   background-color: rgba(0, 0, 0, 0.04);
 }
 
@@ -4229,7 +4262,7 @@ img.card-logo {
     sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #181817;
+  color: var(--text-primary);
   text-decoration: none;
   border-radius: 1000px;
   margin-bottom: 32px;
