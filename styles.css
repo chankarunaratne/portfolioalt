@@ -160,7 +160,6 @@ body {
 .navbar,
 .about-panel,
 .hero,
-.video-intro,
 .case-studies,
 .my-products-section,
 .work-experience-section,
@@ -308,8 +307,6 @@ body {
   --navbar-bg-scrolled: rgba(254, 254, 254, 0.75);
   --hero-bg: var(--color-surface-sunken-soft);
   --hero-border: var(--color-surface-sunken);
-  --video-intro-bg: rgba(253, 253, 250, 0.95); /* based on --gray-50 */
-  --video-intro-border: var(--color-surface-sunken);
   --modal-overlay: rgba(0, 0, 0, 0.8);
   --card-border: var(--color-surface-sunken);
   --border-regular: var(--color-surface-sunken);
@@ -1027,7 +1024,7 @@ body {
   padding: 35px 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .hero-title {
@@ -1075,8 +1072,8 @@ body {
 }
 
 .body-text {
-  font-size: 16px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 22px;
   color: var(--text-normal);
   font-weight: 400;
 }
@@ -1100,201 +1097,7 @@ body {
 
 /* Lens flare keyframes removed (white background) */
 
-/* Video Intro Section */
-.video-intro {
-  margin: 0 auto 32px;
-  width: 576px;
-  max-width: 90%;
-  background: var(--card-bg);
-  border-radius: 16px;
-  border: 1px solid var(--border-regular);
-  box-shadow: var(--card-shadow);
-}
 
-.video-content {
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  gap: 16px;
-}
-
-.video-thumbnail {
-  width: 58px;
-  height: 40px;
-  background: url('assets/video-icon.png') center/cover no-repeat;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-@media (min-width: 769px) {
-  .video-thumbnail:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
-  }
-
-  .video-thumbnail:active {
-    transform: translateY(0);
-  }
-}
-
-.video-info {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.video-title {
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.video-title-mobile {
-  display: none;
-}
-
-.video-description {
-  font-size: 16px;
-  line-height: 26px;
-  color: var(--text-normal);
-  margin: 0;
-}
-
-.video-soon-pill {
-  display: none;
-}
-
-.watch-btn {
-  background: var(--bg-normal);
-  border: 1px solid var(--border-regular);
-  border-radius: 8px;
-  padding: 6px 16px;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
-  color: var(--text-muted);
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.1s ease;
-  position: relative;
-  z-index: 10;
-}
-
-.watch-btn:hover {
-  background: var(--bg-pressed);
-  border-color: #dfe1e7;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.watch-btn:active {
-  transform: translateY(0.5px);
-  background: var(--bg-pressed);
-}
-
-.watch-btn:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 2px rgba(0, 0, 0, 0.1),
-    0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-/* Video Modal Styles */
-.video-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.3s ease-out;
-}
-
-.video-modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--modal-overlay);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-.video-modal-content {
-  position: relative;
-  width: 90%;
-  max-width: 800px;
-  max-height: 90vh;
-  background: var(--card-bg);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  z-index: 10001;
-  animation: slideUp 0.3s ease-out;
-}
-
-.video-modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10002;
-  padding: 0;
-  transition:
-    transform 0.2s ease,
-    filter 0.2s ease;
-  outline: none;
-}
-
-.video-modal-close img {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.video-modal-close:hover {
-  filter: brightness(0.9) contrast(1.1);
-  transform: scale(1.05);
-}
-
-.video-modal-container {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 62.5%; /* 16:10 aspect ratio for Loom */
-}
-
-.video-modal-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
 
 @keyframes fadeIn {
   from {
@@ -1913,16 +1716,22 @@ body {
   max-width: 620px;
 }
 
-/* Ensure all font sizes in case studies section are 14px */
+/* Ensure all font sizes in case studies, products, and work experience sections are 14px */
 .case-studies .products-fieldset-legend-text,
 .case-studies .product-name,
 .case-studies .product-description,
-.case-studies .product-button-text {
+.case-studies .product-button-text,
+.my-products-section .products-fieldset-legend-text,
+.my-products-section .product-name,
+.my-products-section .product-description,
+.my-products-section .product-button-text,
+.work-experience-section .products-fieldset-legend-text {
   font-size: 14px !important;
 }
 
-/* Make case study logos 20% smaller (48px instead of 60px) */
-.case-studies .product-logo-wrapper {
+/* Make case study and product logos 20% smaller (48px instead of 60px) */
+.case-studies .product-logo-wrapper,
+.my-products-section .product-logo-wrapper {
   width: 48px !important;
   height: 48px !important;
 }
@@ -2219,9 +2028,9 @@ body {
 
 /* Work Experience Section */
 .work-experience-section {
-  margin: 0 auto 120px;
-  width: 576px;
-  max-width: 90%;
+  margin: 12px auto 120px;
+  width: 100%;
+  max-width: 620px;
 }
 
 .work-experience-content {
@@ -2353,7 +2162,7 @@ body {
   line-height: 22px;
   color: var(--text-normal);
   margin: 0;
-  width: 640px;
+  width: 100%;
 }
 
 /* Testimonials Section */
@@ -2770,7 +2579,6 @@ body {
   }
 
   .hero,
-  .video-intro,
   .case-studies,
   .my-products-section,
   .work-experience-section,
@@ -2811,13 +2619,7 @@ body {
     padding: 24px 20px 48px 20px !important;
   }
 
-  .video-intro {
-    margin-bottom: 32px;
-    background: rgba(255, 255, 255, 0.035) !important; /* align with cards */
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: saturate(120%) blur(22px) !important; /* match case-card */
-    -webkit-backdrop-filter: saturate(120%) blur(22px) !important;
-  }
+
 
   .case-studies {
     margin-bottom: 72px;
@@ -2990,115 +2792,15 @@ body {
     filter: none;
   }
 
-  /* Mobile video section layout adjustments */
-  .video-content {
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 16px !important;
-    padding: 16px !important;
-  }
 
-  .video-thumbnail {
-    width: 58px !important;
-    height: 40px !important;
-    border-radius: 12px !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-    background: url('assets/video-icon.png') center/cover no-repeat !important;
-    position: relative !important;
-    overflow: hidden !important;
-    flex-shrink: 0 !important;
-  }
-
-  .video-thumbnail:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-  }
-
-  .video-thumbnail:active {
-    transform: translateY(0) !important;
-  }
-
-  .video-info {
-    flex: 1 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-  }
-
-  .video-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-  }
-
-  .video-title {
-    display: block !important;
-    font-size: 16px !important;
-    line-height: 22px !important;
-    font-weight: 500 !important;
-    color: #ffffff !important;
-    margin: 0 !important;
-  }
-
-  .video-title-default {
-    display: none !important;
-  }
-
-  .video-title-mobile {
-    display: inline !important;
-  }
-
-  .video-description {
-    display: none !important;
-  }
-
-  .watch-btn {
-    display: none !important; /* hide button on mobile per spec */
-  }
-
-  .video-soon-pill {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 12px;
-    margin-left: auto;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: #ffffff;
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 500;
-    backdrop-filter: saturate(140%) blur(14px);
-    -webkit-backdrop-filter: saturate(140%) blur(14px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    white-space: nowrap;
-    letter-spacing: 0.01em;
-  }
 
   /* Mobile text adjustments */
   .hero .body-text {
-    font-size: 17px;
-    line-height: 28px;
+    font-size: 14px;
+    line-height: 22px;
   }
 
-  /* Mobile video modal adjustments */
-  .video-modal-content {
-    width: 95% !important;
-    margin: 16px !important;
-    border-radius: 12px !important;
-  }
 
-  .video-modal-close {
-    top: 12px !important;
-    right: 12px !important;
-    width: 28px !important;
-    height: 28px !important;
-    background: none !important;
-    padding: 0 !important;
-  }
 
   /* Mobile case study modal adjustments - Full white background like desktop */
 
@@ -3409,8 +3111,7 @@ body {
     z-index: 9001;
   }
 
-  body.case-hover-active .hero,
-  body.case-hover-active .video-intro {
+  body.case-hover-active .hero {
     opacity: 0;
     transition: opacity 0.3s ease;
   }

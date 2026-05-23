@@ -15,17 +15,6 @@ function initPortfolio() {
   updateNavbarHeightVar();
   window.addEventListener('resize', updateNavbarHeightVar);
 
-  // Feature flag: set to false to hide the video intro section entirely
-  const SHOW_VIDEO_INTRO = false;
-
-  // Hide video intro section immediately if feature flag is off
-  if (!SHOW_VIDEO_INTRO) {
-    const videoIntroEl = document.querySelector('.video-intro');
-    if (videoIntroEl) {
-      videoIntroEl.style.display = 'none';
-    }
-  }
-
   // Detect if this is a SPA re-init (navbar is preserved, don't re-animate it)
   const isSpaTransition = window.__spaTransition || false;
   window.__spaTransition = false;
@@ -36,12 +25,11 @@ function initPortfolio() {
     // About page: animate the panel with the same system (no effect on home)
     { selector: '.about-panel', delay: 500 },
     { selector: '.hero', delay: 500 },
-    ...(SHOW_VIDEO_INTRO ? [{ selector: '.video-intro', delay: 700 }] : []),
-    { selector: '.case-studies', delay: SHOW_VIDEO_INTRO ? 900 : 700 },
-    { selector: '.my-products-section', delay: SHOW_VIDEO_INTRO ? 1100 : 900 },
-    { selector: '.work-experience-section', delay: SHOW_VIDEO_INTRO ? 1300 : 1100 },
-    { selector: '.testimonials-section', delay: SHOW_VIDEO_INTRO ? 1500 : 1300 },
-    { selector: '.footer-section', delay: SHOW_VIDEO_INTRO ? 1700 : 1500 },
+    { selector: '.case-studies', delay: 700 },
+    { selector: '.my-products-section', delay: 900 },
+    { selector: '.work-experience-section', delay: 1100 },
+    { selector: '.testimonials-section', delay: 1300 },
+    { selector: '.footer-section', delay: 1500 },
     // Case study specific selectors
     { selector: '.case-study-header', delay: 500 },
     { selector: '.case-study-app-card', delay: 700 },
@@ -753,178 +741,7 @@ function initPortfolio() {
     }
   });
 
-  // Feature flag: Set to true to enable video intro button, false to disable
-  const VIDEO_INTRO_ENABLED = SHOW_VIDEO_INTRO;
 
-  // Video interaction handlers
-  const watchBtn = document.querySelector('.watch-btn');
-  const videoThumbnail = document.querySelector('.video-thumbnail');
-  const videoModal = document.getElementById('video-modal');
-  const videoModalClose = document.querySelector('.video-modal-close');
-  const videoModalOverlay = document.querySelector('.video-modal-overlay');
-  const loomEmbedContainer = document.getElementById('loom-embed-container');
-
-  // Loom video configuration
-  const loomVideoId = '2ea578cee6d74116b211a16accde633d';
-  const loomVideoUrl = `https://www.loom.com/share/${loomVideoId}`;
-
-  // Loom embed code
-  const loomEmbedHTML = `<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe src="https://www.loom.com/embed/${loomVideoId}?sid=ff0ac7cc-1a10-474a-877e-26d861031448" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>`;
-
-  // Mobile detection function
-  function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent,
-    );
-  }
-
-  // Initialize mobile GIF thumbnail if on mobile
-  function initializeMobileVideoThumbnail() {
-    // No longer replacing thumbnail content on mobile
-    // Let CSS handle the custom video-icon.png background
-    return isMobileDevice(); // Just return if it's mobile for other logic
-  }
-
-  // Function to open video modal
-  function openVideoModal() {
-    // Add the Loom embed to the container
-    loomEmbedContainer.innerHTML = loomEmbedHTML;
-
-    // Show the modal
-    videoModal.style.display = 'flex';
-
-    // Prevent body scrolling when modal is open
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Function to close video modal
-  function closeVideoModal() {
-    // Hide the modal
-    videoModal.style.display = 'none';
-
-    // Remove the embed to stop the video
-    loomEmbedContainer.innerHTML = '';
-
-    // Restore body scrolling
-    document.body.style.overflow = 'auto';
-  }
-
-  // Function to handle video play
-  function handleVideoPlay() {
-    openVideoModal();
-  }
-
-  // Initialize video thumbnail based on device type
-  const isMobile = initializeMobileVideoThumbnail();
-
-  // Apply feature flag: disable interactions if flag is off
-  if (!VIDEO_INTRO_ENABLED) {
-    // Disable watch button
-    if (watchBtn) {
-      watchBtn.style.pointerEvents = 'none';
-      watchBtn.setAttribute('disabled', 'true');
-      watchBtn.setAttribute('aria-disabled', 'true');
-    }
-
-    // Disable video thumbnail
-    if (videoThumbnail) {
-      videoThumbnail.style.pointerEvents = 'none';
-      videoThumbnail.setAttribute('tabindex', '-1');
-      videoThumbnail.setAttribute('aria-disabled', 'true');
-    }
-
-    // Disable entire video-intro section on mobile
-    const videoIntroSection = document.querySelector('.video-intro');
-    if (videoIntroSection) {
-      videoIntroSection.style.pointerEvents = 'none';
-      videoIntroSection.setAttribute('tabindex', '-1');
-      videoIntroSection.setAttribute('aria-disabled', 'true');
-    }
-  } else {
-    // Feature is enabled - add event handlers as normal
-    // Add modal event handlers for both mobile and desktop
-    // Watch button
-    if (watchBtn) {
-      watchBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        handleVideoPlay();
-      });
-    }
-
-    // Video thumbnail click
-    if (videoThumbnail) {
-      videoThumbnail.addEventListener('click', function () {
-        handleVideoPlay();
-      });
-
-      // Keyboard accessibility for thumbnail
-      videoThumbnail.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handleVideoPlay();
-        }
-      });
-    }
-
-    // Make entire video-intro section clickable on mobile
-    const videoIntroSection = document.querySelector('.video-intro');
-    if (videoIntroSection && isMobileDevice()) {
-      videoIntroSection.addEventListener('click', function (e) {
-        // Only trigger if the click wasn't on the thumbnail (to avoid double-triggering)
-        if (!videoThumbnail || !videoThumbnail.contains(e.target)) {
-          handleVideoPlay();
-        }
-      });
-
-      // Add cursor pointer style for mobile
-      videoIntroSection.style.cursor = 'pointer';
-
-      // Keyboard accessibility for the entire section on mobile
-      videoIntroSection.setAttribute('tabindex', '0');
-      videoIntroSection.setAttribute('role', 'button');
-      videoIntroSection.setAttribute(
-        'aria-label',
-        "Play Chan's video introduction",
-      );
-
-      videoIntroSection.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handleVideoPlay();
-        }
-      });
-    }
-  }
-
-  // Modal close event listeners
-  if (videoModalClose) {
-    videoModalClose.addEventListener('click', closeVideoModal);
-  }
-
-  if (videoModalOverlay) {
-    videoModalOverlay.addEventListener('click', closeVideoModal);
-  }
-
-  // Close modal with Escape key
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && videoModal.style.display === 'flex') {
-      closeVideoModal();
-    }
-  });
-
-  // Handle window resize to switch between mobile/desktop modes
-  let resizeTimeout;
-  let wasMobile = isMobile;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(function () {
-      // Reload the page if device type changes to ensure proper initialization
-      const currentlyMobile = isMobileDevice();
-      if (currentlyMobile !== wasMobile) {
-        location.reload();
-      }
-    }, 250);
-  });
 
   // Case Study Modal Functionality
   const caseStudyModal = document.getElementById('case-study-modal');
