@@ -1722,29 +1722,7 @@ function initPortfolio() {
     }
   }
 
-  // Case study card click handlers - navigate to case study pages
-  const caseStudyUrls = {
-    docswell: 'docswell-case-study.html',
-    rememberly: 'rememberly-case-study.html',
-    jiffyhive: 'jiffyhive-case-study.html',
-  };
-
-  const caseCards = document.querySelectorAll('.case-card');
-  caseCards.forEach((card) => {
-    card.addEventListener('click', function () {
-      const caseStudyType = card.getAttribute('data-case-study');
-      const url = caseStudyUrls[caseStudyType];
-
-      if (url) {
-        // Create an anchor and click it so page-transition.js intercepts it
-        const a = document.createElement('a');
-        a.href = url;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }
-    });
-  });
+  // Case study cards click navigation handled natively by anchor tags inside them
 
   // Close case study modal event listeners
   if (caseStudyModalClose) {

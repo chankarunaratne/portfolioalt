@@ -229,51 +229,70 @@
         </section>
 
         <!-- Case Studies Section -->
-        <section class="case-studies">
-          <div class="cards-container">
-            <div class="case-card" data-case-study="docswell">
-              <div class="card-thumbnail-wrapper">
-                <img src="assets/docswell-thumbnail.png" alt="Docswell thumbnail" class="card-thumbnail" />
-              </div>
-              <div class="card-left">
-                <img src="assets/docswell-case-study/product-logo.png" alt="Docswell logo" class="card-logo" />
-                <div class="card-details">
-                  <h3 class="card-title">Docswell</h3>
-                  <p class="card-role">Product Designer</p>
-                </div>
-              </div>
+        <section class="case-studies" id="case-studies">
+          <div class="products-fieldset">
+            <div class="products-fieldset-legend">
+              <span class="products-fieldset-legend-text">Selected work</span>
             </div>
-            
-            <div class="case-card" data-case-study="rememberly">
-              <div class="card-thumbnail-wrapper">
-                <img src="assets/rememberly-thumbnail.png" alt="Rememberly thumbnail" class="card-thumbnail" />
-              </div>
-              <div class="card-left">
-                <img src="assets/rememberly-case-study/rememberly-company-logo.png" alt="Rememberly logo" class="card-logo" />
-                <div class="card-details">
-                  <h3 class="card-title">Rememberly</h3>
-                  <p class="card-role">Founder + Maker</p>
+            <div class="products-fieldset-body">
+              <!-- Docswell Case Study -->
+              <div class="case-card" data-case-study="docswell">
+                <div class="product-card-content">
+                  <div class="product-logo-wrapper">
+                    <img
+                      src="assets/docswell-case-study/product-logo.png"
+                      alt="Docswell logo"
+                      class="product-logo"
+                    />
+                  </div>
+                  <div class="product-details">
+                    <p class="product-name">Docswell</p>
+                    <p class="product-description">Product Designer</p>
+                  </div>
                 </div>
+                <a href="docswell-case-study.html" class="product-button-secondary">
+                  <span class="product-button-text">Open case study</span>
+                </a>
               </div>
-            </div>
-            
-            <div class="case-card coming-soon" data-case-study="jiffyhive">
-              <div class="card-left">
-                <img src="assets/jiffyhive-case-study-logo.png" alt="Jiffyhive logo" class="card-logo" />
-                <div class="card-details">
-                  <h3 class="card-title">Jiffyhive</h3>
-                  <p class="card-role">Founding Designer</p>
+              
+              <!-- Rememberly Case Study -->
+              <div class="case-card" data-case-study="rememberly">
+                <div class="product-card-content">
+                  <div class="product-logo-wrapper">
+                    <img
+                      src="assets/rememberly-case-study/rememberly-company-logo.png"
+                      alt="Rememberly logo"
+                      class="product-logo"
+                    />
+                  </div>
+                  <div class="product-details">
+                    <p class="product-name">Rememberly</p>
+                    <p class="product-description">Founder + Maker</p>
+                  </div>
                 </div>
+                <a href="rememberly-case-study.html" class="product-button-secondary">
+                  <span class="product-button-text">Open case study</span>
+                </a>
               </div>
-            </div>
-            
-            <div class="case-card coming-soon" data-case-study="jiffyhive">
-              <div class="card-left">
-                <img src="assets/jiffyhive-case-study-logo.png" alt="Jiffyhive logo" class="card-logo" />
-                <div class="card-details">
-                  <h3 class="card-title">Jiffyhive</h3>
-                  <p class="card-role">Founding Designer</p>
+              
+              <!-- Jiffyhive Case Study -->
+              <div class="case-card coming-soon" data-case-study="jiffyhive">
+                <div class="product-card-content">
+                  <div class="product-logo-wrapper">
+                    <img
+                      src="assets/jiffyhive-case-study-logo.png"
+                      alt="Jiffyhive logo"
+                      class="product-logo"
+                    />
+                  </div>
+                  <div class="product-details">
+                    <p class="product-name">Jiffyhive</p>
+                    <p class="product-description">Founding Designer</p>
+                  </div>
                 </div>
+                <button class="product-button-disabled" disabled>
+                  <span class="product-button-text">Coming soon</span>
+                </button>
               </div>
             </div>
           </div>
@@ -282,21 +301,11 @@
 
       <!-- My Products Section -->
       <section class="my-products-section" id="my-products">
-        <div class="my-products-content">
-          <div class="my-products-icon">
-            <img
-              src="assets/products-icon.png"
-              alt="Products icon"
-              class="my-products-icon-img"
-            />
+        <div class="products-fieldset">
+          <div class="products-fieldset-legend">
+            <span class="products-fieldset-legend-text">My products</span>
           </div>
-          <h3 class="section-heading">My products</h3>
-          <div class="my-products-text">
-            <p class="my-products-title">
-              Products I've designed and developed recently.
-            </p>
-          </div>
-          <div class="products-cards-container">
+          <div class="products-fieldset-body">
             <div class="product-card">
               <div class="product-card-content">
                 <div class="product-logo-wrapper">

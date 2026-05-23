@@ -1013,7 +1013,7 @@ body {
 /* Hero Section */
 .hero {
   margin: 8px auto 32px;
-  width: 720px;
+  width: 576px;
   max-width: 90%;
   background: transparent;
   border-radius: 0;
@@ -1103,7 +1103,7 @@ body {
 /* Video Intro Section */
 .video-intro {
   margin: 0 auto 32px;
-  width: 720px;
+  width: 576px;
   max-width: 90%;
   background: var(--card-bg);
   border-radius: 16px;
@@ -1908,131 +1908,40 @@ body {
 
 /* Case Studies Section */
 .case-studies {
-  margin: 0 auto 96px;
-  max-width: 90%;
+  margin: 12px auto 120px;
+  width: 100%;
+  max-width: 620px;
 }
 
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+/* Ensure all font sizes in case studies section are 14px */
+.case-studies .products-fieldset-legend-text,
+.case-studies .product-name,
+.case-studies .product-description,
+.case-studies .product-button-text {
+  font-size: 14px !important;
+}
+
+/* Make case study logos 20% smaller (48px instead of 60px) */
+.case-studies .product-logo-wrapper {
+  width: 48px !important;
+  height: 48px !important;
 }
 
 .case-card {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: var(--card-bg);
-  border-radius: 20px;
-  padding: 8px 8px 16px 8px;
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-regular);
+  padding: 12px 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  border: none;
-  box-shadow: var(--card-shadow);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  user-select: none;
   box-sizing: border-box;
 }
 
-.card-thumbnail-wrapper {
-  width: 100%;
-  aspect-ratio: 1.7;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: var(--bg-normal);
-  margin-bottom: 12px;
-}
-
-.card-thumbnail {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.case-card:hover .card-thumbnail {
-  transform: scale(1.03);
-}
-
-.card-left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-  margin-left: 8px;
-}
-
-.card-details {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  justify-content: center;
-}
-
-.card-role {
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--text-subdued);
-  font-weight: 400;
-  margin: 0;
-}
-
-.card-logo {
-  width: 48px;
-  height: 48px;
-  background-color: var(--bg-normal);
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-img.card-logo {
-  object-fit: cover;
-  background-color: transparent;
-}
-
-.card-right {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-self: flex-start;
-}
-
-.card-title {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.card-cta {
-  font-size: 14px;
-  line-height: 24px;
-  color: var(--text-normal);
-  margin: 0;
-  position: relative;
-  display: inline-block;
-}
-
-.card-cta::after {
-  content: '';
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-top: 1.5px solid currentColor;
-  border-right: 1.5px solid currentColor;
-  transform: rotate(45deg);
-  margin-left: 4px;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
-}
-
-/* Arrow animation on card hover */
-.case-card:hover .card-cta::after {
-  transform: rotate(45deg) translate(2px, -2px);
+.case-card:last-child {
+  border-bottom: none;
 }
 
 /* Homepage section header text container (title + description) */
@@ -2067,38 +1976,32 @@ img.card-logo {
 /* My Products Section */
 .my-products-section {
   margin: 12px auto 120px;
-  width: 720px;
-  max-width: 90%;
-}
-
-.my-products-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
-}
-
-.my-products-icon {
-  width: 50px;
-  height: 50px;
-  position: relative;
-}
-
-.my-products-icon-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  max-width: 620px;
 }
 
-.my-products-text {
+/* Fieldset/Legend Card */
+.products-fieldset {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  background-color: var(--white);
+  border: 1px solid var(--border-regular);
+  padding: 0;
+  overflow: hidden;
+  /* Skeuomorphic subtle shadow */
+  box-shadow: var(--card-shadow);
+}
+
+.products-fieldset-legend {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0;
-  text-align: center;
+  padding: 16px 20px 24px 20px;
+  background-color: var(--color-surface-sunken-soft);
+  width: 100%;
 }
 
-.my-products-title {
+.products-fieldset-legend-text {
   font-family:
     'Inter',
     -apple-system,
@@ -2108,36 +2011,31 @@ img.card-logo {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  font-size: 16px;
-  line-height: 26px;
-  font-weight: 400;
-  color: var(--text-subdued);
-  text-align: left;
-  margin: 0;
-  margin-top: 12px;
-  width: 486px;
-  max-width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
 }
 
-.products-cards-container {
+.products-fieldset-body {
   display: flex;
   flex-direction: column;
   gap: 0;
   width: 100%;
-  max-width: 720px;
-  margin-top: 20px;
-  margin-left: 0;
-  margin-right: auto;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-regular);
-  border-radius: 14px;
-  overflow: hidden;
+  background-color: var(--white);
+  border-top: 1px solid var(--border-regular);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  margin-top: -12px;
+  position: relative;
+  z-index: 1;
 }
 
 .product-card {
   background-color: transparent;
   border-bottom: 1px solid var(--border-regular);
-  padding: 12px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2198,9 +2096,9 @@ img.card-logo {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
   color: var(--text-muted);
   margin: 0;
 }
@@ -2215,10 +2113,10 @@ img.card-logo {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  font-size: 16px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
-  color: var(--text-normal);
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -2322,7 +2220,7 @@ img.card-logo {
 /* Work Experience Section */
 .work-experience-section {
   margin: 0 auto 120px;
-  width: 720px;
+  width: 576px;
   max-width: 90%;
 }
 
@@ -2461,7 +2359,7 @@ img.card-logo {
 /* Testimonials Section */
 .testimonials-section {
   margin: 0 auto 120px;
-  width: 720px;
+  width: 576px;
   max-width: 90%;
 }
 
@@ -2655,7 +2553,7 @@ img.card-logo {
 /* Articles Section */
 .articles-section {
   margin: 0 auto 124px;
-  width: 720px;
+  width: 576px;
   max-width: 90%;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 16px; /* 2xl in Tailwind */
@@ -2866,7 +2764,11 @@ img.card-logo {
     min-height: auto;
   }
 
-  .navbar,
+  .navbar {
+    width: 90% !important;
+    max-width: 720px !important;
+  }
+
   .hero,
   .video-intro,
   .case-studies,
@@ -2877,7 +2779,7 @@ img.card-logo {
   .testimonials-section,
   .final-illustration-section {
     width: 90% !important;
-    max-width: 720px !important;
+    max-width: 576px !important;
   }
 
   /* Reduce margins on mobile */
@@ -2925,7 +2827,6 @@ img.card-logo {
     margin-bottom: 100px;
   }
 
-  .my-products-title,
   .work-experience-title,
   .testimonials-subtitle {
     width: 100% !important;
@@ -2950,7 +2851,7 @@ img.card-logo {
   }
 
   .product-card {
-    padding: 12px;
+    padding: 12px 20px;
   }
 
   .product-card-content {
@@ -3029,17 +2930,7 @@ img.card-logo {
     margin-right: auto;
   }
 
-  .cards-container {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
 
-  .case-card {
-    width: 100% !important;
-    max-width: none !important;
-    aspect-ratio: auto;
-    min-height: 280px;
-  }
 
   .hero-title {
     font-size: 28px;
@@ -3470,32 +3361,7 @@ img.card-logo {
   }
 }
 
-/* Interactive elements */
-.case-card {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  cursor: pointer;
-  user-select: none;
-}
 
-.case-card.coming-soon {
-  cursor: default;
-}
-
-.case-card:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 0 0.5px rgba(0, 0, 0, 0.06),
-    0 4px 16px rgba(0, 0, 0, 0.08);
-}
-
-.case-card:active {
-  transform: translateY(-1px);
-  box-shadow:
-    0 0 0 0.5px rgba(0, 0, 0, 0.06),
-    0 2px 8px rgba(0, 0, 0, 0.06);
-}
 
 /* ── Case Study Hover Preview (desktop only) ── */
 @media (min-width: 769px) {
