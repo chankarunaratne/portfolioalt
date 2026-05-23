@@ -1072,8 +1072,8 @@ body {
 }
 
 .body-text {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 15px;
+  line-height: 24px;
   color: var(--text-normal);
   font-weight: 400;
 }
