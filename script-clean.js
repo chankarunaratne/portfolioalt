@@ -104,6 +104,20 @@ function initPortfolio() {
     allScrollLinks.forEach((link) => {
       link.addEventListener('click', function (e) {
         const href = this.getAttribute('href') || '';
+        const isHome =
+          window.location.pathname.endsWith('/') ||
+          window.location.pathname.endsWith('/index.html') ||
+          window.location.pathname.endsWith('index.html');
+
+        // If we're already on home, prevent reload and smooth scroll to top when clicking home links
+        if (
+          isHome &&
+          (href === 'index.html' || href === './index.html' || href === '/')
+        ) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
 
         // Smooth-scroll for in-page anchor navigation
         if (href.startsWith('#') && href.length > 1) {
@@ -750,10 +764,11 @@ function initPortfolio() {
   const imagePopupOverlay = document.querySelector('.image-popup-overlay');
   const imagePopupClose = document.querySelector('.image-popup-close');
   const popupImage = document.getElementById('popup-image');
+  let isZoomed = false;
 
   // Function to open image popup modal
   function openImagePopup(imageSrc, imageAlt) {
-
+    if (!popupImage || !imagePopupModal) return;
     popupImage.src = imageSrc;
     popupImage.alt = imageAlt;
     imagePopupModal.classList.remove('closing');
@@ -765,14 +780,16 @@ function initPortfolio() {
 
   // Function to close image popup modal
   function closeImagePopup() {
-    if (imagePopupModal.style.display === 'none') return;
+    if (!imagePopupModal || imagePopupModal.style.display === 'none') return;
 
 
 
     imagePopupModal.classList.add('closing');
     setTimeout(() => {
-      imagePopupModal.style.display = 'none';
-      imagePopupModal.classList.remove('closing');
+      if (imagePopupModal) {
+        imagePopupModal.style.display = 'none';
+        imagePopupModal.classList.remove('closing');
+      }
       document.body.style.overflow = 'auto';
       isZoomed = false;
     }, 300); // Matches CSS animation duration
@@ -799,7 +816,7 @@ function initPortfolio() {
 
   // Close image popup with Escape key
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && imagePopupModal.style.display === 'flex') {
+    if (e.key === 'Escape' && imagePopupModal && imagePopupModal.style.display === 'flex') {
       closeImagePopup();
     }
   });

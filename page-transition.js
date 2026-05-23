@@ -21,8 +21,8 @@
 
   function isHtmlNavigation(href) {
     if (!href) return false;
-    // Allow "about.html", "index.html#section", "./about.html", etc.
-    return /\.html(\?|#|$)/i.test(href);
+    // Allow "/", "./", ".", "about.html", "index.html#section", etc.
+    return href === '/' || href === './' || href === '.' || /\.html(\?|#|$)/i.test(href);
   }
 
   function getPageRoot() {
@@ -103,7 +103,8 @@
           markEntered();
         }, 180);
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error("Transition error caught:", err);
         window.location.href = href;
       });
   }
