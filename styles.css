@@ -1009,7 +1009,7 @@ body {
 
 /* Hero Section */
 .hero {
-  margin: 8px auto 32px;
+  margin: 8px auto 16px;
   width: 576px;
   max-width: 90%;
   background: transparent;
@@ -1711,9 +1711,9 @@ body {
 
 /* Case Studies Section */
 .case-studies {
-  margin: 12px auto 120px;
+  margin: 12px auto 60px;
   width: 100%;
-  max-width: 620px;
+  max-width: 640px;
 }
 
 /* Ensure all font sizes in case studies, products, and work experience sections are 14px */
@@ -1784,9 +1784,9 @@ body {
 
 /* My Products Section */
 .my-products-section {
-  margin: 12px auto 120px;
+  margin: 12px auto 60px;
   width: 100%;
-  max-width: 620px;
+  max-width: 640px;
 }
 
 /* Fieldset/Legend Card */
@@ -2030,7 +2030,7 @@ body {
 .work-experience-section {
   margin: 12px auto 120px;
   width: 100%;
-  max-width: 620px;
+  max-width: 640px;
 }
 
 .work-experience-content {
