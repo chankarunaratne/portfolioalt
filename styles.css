@@ -1017,7 +1017,7 @@ body {
   border: none;
   box-shadow: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-content {
@@ -1044,6 +1044,24 @@ body {
     Arial,
     sans-serif;
 }
+
+.hero-title-c {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-crown {
+  position: absolute;
+  width: 0.88em;
+  height: auto;
+  bottom: 75%;
+  left: calc(-15% - 4px);
+  transform: rotate(-15deg);
+  transform-origin: bottom center;
+  pointer-events: none;
+  z-index: 10;
+}
+
 
 /* Force precise two-line layout for hero title on desktop */
 .hero-line {
