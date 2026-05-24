@@ -298,7 +298,7 @@ body {
   --bg-normal: var(--color-surface-sunken-soft);
   --bg-pressed: var(--color-surface-sunken);
   --bg-white: var(--color-background);
-  --app-card-surface: var(--color-surface-sunken-soft);
+  --app-card-surface: var(--white);
   --app-card-border: var(--color-surface-sunken);
   --gradient-from: #949494;
   --gradient-to: #b3b3b399;
@@ -1624,7 +1624,8 @@ body {
 
 /* Make case study and product logos 20% smaller (48px instead of 60px) */
 .case-studies .product-logo-wrapper,
-.my-products-section .product-logo-wrapper {
+.my-products-section .product-logo-wrapper,
+.case-study-app-card .product-logo-wrapper {
   width: 48px !important;
   height: 48px !important;
 }
