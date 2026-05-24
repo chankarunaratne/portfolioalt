@@ -74,7 +74,6 @@ html {
 
 body {
   font-family:
-    'Geist',
     'Inter',
     -apple-system,
     BlinkMacSystemFont,
@@ -464,7 +463,6 @@ body {
 
 .about-title {
   font-family:
-    'Geist',
     'Inter',
     -apple-system,
     BlinkMacSystemFont,
@@ -1216,7 +1214,6 @@ body {
 
 .case-study-subheading {
   font-family:
-    'Geist',
     'Inter',
     -apple-system,
     BlinkMacSystemFont,
@@ -1309,7 +1306,6 @@ body {
 .achievement-number {
   display: block;
   font-family:
-    'Geist',
     'Inter',
     -apple-system,
     BlinkMacSystemFont,
@@ -1485,7 +1481,6 @@ body {
 
 .case-study-more-content {
   font-family:
-    'Geist',
     'Inter',
     -apple-system,
     BlinkMacSystemFont,
@@ -2289,7 +2284,6 @@ body {
 
 .article-title {
   font-family:
-    'Geist',
     'Inter',
     -apple-system,
     BlinkMacSystemFont,
@@ -2307,7 +2301,6 @@ body {
 
 .article-read-time {
   font-family:
-    'Geist',
     'Inter',
     -apple-system,
     BlinkMacSystemFont,
@@ -2325,7 +2318,6 @@ body {
 
 .read-article-btn {
   font-family:
-    'Geist',
     'Inter',
     -apple-system,
     BlinkMacSystemFont,
@@ -2654,7 +2646,7 @@ body {
   }
 
   .hero-content {
-    padding: 24px 0; /* Reduce padding on mobile */
+    padding: 24px 16px; /* Reduce padding on mobile and add 16px horizontal padding */
   }
 
   /* Mobile navbar adjustments: sticky behavior */
@@ -2695,7 +2687,7 @@ body {
   /* Mobile text adjustments */
   .hero .body-text {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 28px;
   }
 
   .case-study-subheading {
