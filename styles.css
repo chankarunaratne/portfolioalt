@@ -936,7 +936,7 @@ body {
 .mobile-nav-link .nav-link-icon {
   width: 16px;
   height: 16px;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 /* Nav Right Container */
@@ -985,12 +985,12 @@ body {
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
   width: 354px;
-  background: rgb(12, 18, 28); /* fully opaque */
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--bg-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   backdrop-filter: saturate(130%) blur(22px);
   -webkit-backdrop-filter: saturate(130%) blur(22px);
   border-radius: 12px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
   margin-top: 8px;
   opacity: 0;
   pointer-events: none;
@@ -1018,7 +1018,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   text-decoration: none;
-  color: #ffffff; /* ensure white text on frosted background */
+  color: var(--text-muted); /* Dark text color */
   font-weight: 400;
   padding: 8px 12px;
   border-radius: 6px;
@@ -1028,14 +1028,14 @@ body {
 }
 
 .mobile-nav-link.active {
-  color: #ffffff;
+  color: var(--text-primary);
   font-weight: 500;
   border-radius: 6px;
 }
 
 .mobile-nav-link:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 /* Hero Section */
@@ -2911,6 +2911,19 @@ body {
     width: 28px !important;
     height: 28px !important;
   }
+
+  /* Mobile menu background blur effect */
+  .page-root > *:not(.navbar) {
+    transition: filter 0.25s ease, opacity 0.25s ease, -webkit-filter 0.25s ease;
+  }
+  
+  body.mobile-menu-open .page-root > *:not(.navbar) {
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    opacity: 0.6;
+    pointer-events: none;
+    will-change: filter, opacity;
+  }
 }
 
 
@@ -3336,21 +3349,6 @@ body {
   filter: none; /* Dark icon on white background */
 }
 
-/* Light-themed mobile menu for case study pages */
-.case-study-page .mobile-menu-overlay {
-  background: var(--bg-white);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
-}
-
-.case-study-page .mobile-nav-link {
-  color: var(--text-muted);
-}
-
-.case-study-page .mobile-nav-link:hover {
-  color: var(--text-primary);
-  background-color: rgba(0, 0, 0, 0.04);
-}
 
 /* Back button for case study pages – skeuomorphic pill */
 .case-study-back-button {

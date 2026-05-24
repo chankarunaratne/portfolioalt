@@ -69,6 +69,7 @@ function initPortfolio() {
   function closeMobileMenuIfPresent() {
     if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
     if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+    document.body.classList.remove('mobile-menu-open');
   }
 
   // Guard: only attach navbar listeners once (SPA transitions preserve the navbar)
@@ -206,11 +207,13 @@ function initPortfolio() {
       function openMobileMenu() {
         mobileMenuToggle.classList.add('active');
         mobileMenuOverlay.classList.add('active');
+        document.body.classList.add('mobile-menu-open');
       }
 
       function closeMobileMenu() {
         mobileMenuToggle.classList.remove('active');
         mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('mobile-menu-open');
       }
     }
   } // end navbar init guard
