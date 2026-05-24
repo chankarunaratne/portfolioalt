@@ -2550,12 +2550,12 @@ body {
 
   .product-name {
     font-size: 17px;
-    line-height: 24px;
+    line-height: 22px;
   }
 
   .product-description {
     font-size: 17px;
-    line-height: 28px;
+    line-height: 20px;
   }
 
   .product-button-secondary {
@@ -2675,8 +2675,8 @@ body {
 
   /* Mobile text adjustments */
   .hero .body-text {
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .case-study-subheading {
@@ -3524,5 +3524,30 @@ body {
     max-width: none;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .case-studies .case-card .product-button-text {
+    font-size: 0 !important;
+    line-height: 0;
+  }
+  .case-studies .case-card .product-button-text::after {
+    content: 'View';
+    font-size: 14px !important;
+    line-height: 20px;
+  }
+}
+
+.desc-mobile {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .desc-desktop {
+    display: none;
+  }
+  .desc-mobile {
+    display: inline;
   }
 }
