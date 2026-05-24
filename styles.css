@@ -920,6 +920,25 @@ body {
   color: var(--nav-link-hover) !important;
 }
 
+.nav-link.has-icon, .mobile-nav-link.has-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.mobile-nav-link .nav-link-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
 /* Nav Right Container */
 .nav-right {
   display: flex;
