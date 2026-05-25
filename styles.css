@@ -2689,6 +2689,13 @@ body {
     padding: 24px 16px; /* Reduce padding on mobile and add 16px horizontal padding */
   }
 
+  .articles-page-root .hero-content,
+  .products-page-root .hero-content,
+  .contact-page-root .hero-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   /* Mobile navbar adjustments: sticky behavior */
   .navbar {
     position: sticky !important;
