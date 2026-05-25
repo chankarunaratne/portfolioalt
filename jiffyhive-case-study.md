@@ -4,7 +4,7 @@
 **Role:** Founding Designer  
 **Title:** Jiffyhive: AI-powered employee hiring platform  
 
-Jiffy aims to eliminate the tedious process of hiring employees with the help of AI.
+Jiffyhive is a B2B SaaS service that aims to remove the tedious process of hiring with the help of AI screening
 
 ## Background
 Our Co-founder who constantly hires software engineers, had one main problem - spending weeks to find the right candidate for the job.
