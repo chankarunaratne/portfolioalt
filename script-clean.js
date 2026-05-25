@@ -26,6 +26,7 @@ function initPortfolio() {
     { selector: '.about-panel', delay: 500 },
     { selector: '.hero', delay: 500 },
     { selector: '.case-studies', delay: 700 },
+    { selector: '.articles-section', delay: 700 },
     { selector: '.my-products-section', delay: 900 },
     { selector: '.work-experience-section', delay: 1100 },
     { selector: '.testimonials-section', delay: 1300 },
