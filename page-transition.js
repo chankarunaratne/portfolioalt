@@ -63,7 +63,7 @@
           document.title = newDoc.title;
           
           // Swap page-specific classes before inserting content (prevents flash)
-          root.classList.remove('home', 'case-study-page', 'about-page-root');
+          root.classList.remove('home', 'case-study-page', 'about-page-root', 'products-page-root', 'articles-page-root');
           newRoot.className.split(/\s+/).forEach(cls => {
             if (cls && cls !== 'page-root' && cls !== 'page-ready' && cls !== 'page-leave') {
               root.classList.add(cls);

@@ -828,6 +828,8 @@ function initPortfolio() {
   function setActiveNav() {
     const path = window.location.pathname.toLowerCase();
     const isAbout = path.endsWith('/about.html') || path.endsWith('about.html');
+    const isProducts = path.endsWith('/products.html') || path.endsWith('products.html');
+    const isArticles = path.endsWith('/articles.html') || path.endsWith('articles.html');
     const isHome = path.endsWith('/index.html') || path.endsWith('index.html') || path.endsWith('/') || path === '';
 
     navLinks.forEach((l) => l.classList.remove('active'));
@@ -841,6 +843,20 @@ function initPortfolio() {
           l.classList.add('active');
         }
         if ((l.getAttribute('href') || '') === '#about') {
+          l.classList.add('active');
+        }
+      });
+      return;
+    } else if (isProducts) {
+      allLinks.forEach((l) => {
+        if ((l.getAttribute('href') || '').includes('products.html')) {
+          l.classList.add('active');
+        }
+      });
+      return;
+    } else if (isArticles) {
+      allLinks.forEach((l) => {
+        if ((l.getAttribute('href') || '').includes('articles.html')) {
           l.classList.add('active');
         }
       });

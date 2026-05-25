@@ -3588,3 +3588,14 @@ body {
     display: inline;
   }
 }
+
+/* Products Page Specific Styles */
+.products-page-root .my-products-section {
+  width: 576px;
+  max-width: 90%;
+}
+
+.products-page-root .hero-content {
+  padding-bottom: 20px;
+}
+
