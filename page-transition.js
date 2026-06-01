@@ -60,7 +60,7 @@
         str = url.pathname;
       } catch (e) {}
 
-      if (str === '/' || str.endsWith('/')) return '';
+      if (str === '/') return '';
       
       const slug = str
         .toLowerCase()
