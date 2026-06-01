@@ -59,11 +59,17 @@
         const url = new URL(str, window.location.origin);
         str = url.pathname;
       } catch (e) {}
+
+      if (str === '/' || str.endsWith('/')) return '';
       
-      return str
+      const slug = str
         .toLowerCase()
         .replace(/\.html$/, '')
-        .replace(/^\//, '')
+        .split('/')
+        .filter(Boolean)
+        .pop() || '';
+
+      return slug
         .replace(/\/$/, '')
         .trim();
     };
@@ -132,7 +138,7 @@
           document.title = newDoc.title;
           
           // Swap page-specific classes before inserting content (prevents flash)
-          root.classList.remove('home', 'case-study-page', 'about-page-root', 'products-page-root', 'articles-page-root');
+          root.classList.remove('home', 'case-study-page', 'about-page-root', 'products-page-root', 'articles-page-root', 'contact-page-root');
           newRoot.className.split(/\s+/).forEach(cls => {
             if (cls && cls !== 'page-root' && cls !== 'page-ready' && cls !== 'page-leave') {
               root.classList.add(cls);
