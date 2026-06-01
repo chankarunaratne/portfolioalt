@@ -70,6 +70,29 @@
             }
           });
 
+          // Update active states on the preserved navbar links to match the new page
+          const newNavbar = newDoc.querySelector('.navbar');
+          if (newNavbar && navbar) {
+            const oldLinks = navbar.querySelectorAll('.nav-link, .mobile-nav-link');
+            const newLinks = newNavbar.querySelectorAll('.nav-link, .mobile-nav-link');
+            
+            const activeHrefs = new Set();
+            newLinks.forEach(link => {
+              if (link.classList.contains('active')) {
+                activeHrefs.add(link.getAttribute('href'));
+              }
+            });
+
+            oldLinks.forEach(link => {
+              const href = link.getAttribute('href');
+              if (activeHrefs.has(href)) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+
           // Remove children of root EXCEPT navbar
           Array.from(root.children).forEach(child => {
             if (child !== navbar) {
