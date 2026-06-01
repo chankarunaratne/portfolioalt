@@ -50,6 +50,27 @@
     }
   }
 
+  function canonicalizeCleanPageUrl() {
+    const extensionlessPages = new Set([
+      'about',
+      'articles',
+      'products',
+      'contact',
+      'docswell-case-study',
+      'rememberly-case-study',
+      'jiffyhive-case-study',
+    ]);
+    const url = new URL(window.location.href);
+    const parts = url.pathname.split('/').filter(Boolean);
+    const pageSlug = parts[parts.length - 1] || '';
+
+    if (!extensionlessPages.has(pageSlug)) return;
+
+    parts[parts.length - 1] = `${pageSlug}.html`;
+    url.pathname = `/${parts.join('/')}`;
+    history.replaceState(null, '', url);
+  }
+
   function updateActiveNavbarLinks(currentHref = window.location.href) {
     const path = new URL(currentHref, window.location.href).pathname;
     
@@ -166,9 +187,10 @@
           if (!isPopstate) {
             history.pushState(null, '', href);
           }
+          canonicalizeCleanPageUrl();
 
           // Update active states on the preserved navbar links to match the new page
-          updateActiveNavbarLinks(href);
+          updateActiveNavbarLinks();
           
           // Signal SPA re-init (so initPortfolio skips navbar animation)
           window.__spaTransition = true;
@@ -193,6 +215,7 @@
   });
 
   document.addEventListener("DOMContentLoaded", () => {
+    canonicalizeCleanPageUrl();
     markEntered();
     updateActiveNavbarLinks();
 
