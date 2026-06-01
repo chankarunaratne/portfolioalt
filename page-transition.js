@@ -21,8 +21,77 @@
 
   function isHtmlNavigation(href) {
     if (!href) return false;
-    // Allow "/", "./", ".", "about.html", "index.html#section", etc.
-    return href === '/' || href === './' || href === '.' || /\.html(\?|#|$)/i.test(href);
+    
+    // Ignore internal anchor hashes like "#about"
+    if (href.startsWith('#')) return false;
+    
+    // Ignore mailto:, tel:, javascript: protocols
+    if (/^(mailto|tel|javascript):/i.test(href)) return false;
+
+    try {
+      const url = new URL(href, window.location.href);
+      
+      // Must be same origin
+      if (url.origin !== window.location.origin) return false;
+      
+      // Get the pathname
+      const pathname = url.pathname;
+      
+      // If pathname ends with any common non-html extension, it's not a page navigation
+      const nonHtmlRegex = /\.(png|jpe?g|gif|svg|pdf|zip|xml|json|txt|css|js|mp4|webm|ico|webmanifest)$/i;
+      if (nonHtmlRegex.test(pathname)) {
+        return false;
+      }
+      
+      return true;
+    } catch {
+      // Fallback for relative paths if URL parsing fails
+      return !/\.(png|jpe?g|gif|svg|pdf|zip|xml|json|txt|css|js|mp4|webm|ico|webmanifest)$/i.test(href);
+    }
+  }
+
+  function updateActiveNavbarLinks() {
+    const path = window.location.pathname;
+    
+    const normalize = (str) => {
+      if (!str) return '';
+      try {
+        const url = new URL(str, window.location.origin);
+        str = url.pathname;
+      } catch (e) {}
+      
+      return str
+        .toLowerCase()
+        .replace(/\.html$/, '')
+        .replace(/^\//, '')
+        .replace(/\/$/, '')
+        .trim();
+    };
+
+    const normalizedPath = normalize(path);
+    const isHomePath = normalizedPath === '' || normalizedPath === 'index';
+
+    const links = document.querySelectorAll('.navbar .nav-link, .navbar .mobile-nav-link');
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+
+      const normalizedHref = normalize(href);
+      const isHomeHref = normalizedHref === '' || normalizedHref === 'index';
+
+      let isActive = false;
+      if (isHomePath && isHomeHref) {
+        isActive = true;
+      } else if (!isHomePath && normalizedHref && normalizedPath === normalizedHref) {
+        isActive = true;
+      }
+
+      if (isActive) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
   }
 
   function getPageRoot() {
@@ -71,27 +140,7 @@
           });
 
           // Update active states on the preserved navbar links to match the new page
-          const newNavbar = newDoc.querySelector('.navbar');
-          if (newNavbar && navbar) {
-            const oldLinks = navbar.querySelectorAll('.nav-link, .mobile-nav-link');
-            const newLinks = newNavbar.querySelectorAll('.nav-link, .mobile-nav-link');
-            
-            const activeHrefs = new Set();
-            newLinks.forEach(link => {
-              if (link.classList.contains('active')) {
-                activeHrefs.add(link.getAttribute('href'));
-              }
-            });
-
-            oldLinks.forEach(link => {
-              const href = link.getAttribute('href');
-              if (activeHrefs.has(href)) {
-                link.classList.add('active');
-              } else {
-                link.classList.remove('active');
-              }
-            });
-          }
+          updateActiveNavbarLinks();
 
           // Remove children of root EXCEPT navbar
           Array.from(root.children).forEach(child => {
@@ -139,6 +188,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     markEntered();
+    updateActiveNavbarLinks();
 
     document.addEventListener("click", (e) => {
       if (e.defaultPrevented) return;
