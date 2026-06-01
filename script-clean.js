@@ -828,10 +828,10 @@ function initPortfolio() {
   // Set nav active state based on current page + hash
   function setActiveNav() {
     const path = window.location.pathname.toLowerCase();
-    const isAbout = path.endsWith('/about.html') || path.endsWith('about.html');
-    const isProducts = path.endsWith('/products.html') || path.endsWith('products.html');
-    const isArticles = path.endsWith('/articles.html') || path.endsWith('articles.html');
-    const isHome = path.endsWith('/index.html') || path.endsWith('index.html') || path.endsWith('/') || path === '';
+    const isAbout = path.endsWith('/about.html') || path.endsWith('about.html') || path.endsWith('/about') || path.endsWith('/about/');
+    const isProducts = path.endsWith('/products.html') || path.endsWith('products.html') || path.endsWith('/products') || path.endsWith('/products/');
+    const isArticles = path.endsWith('/articles.html') || path.endsWith('articles.html') || path.endsWith('/articles') || path.endsWith('/articles/');
+    const isHome = path.endsWith('/index.html') || path.endsWith('index.html') || path.endsWith('/') || path === '' || path.endsWith('/index') || path.endsWith('/index/');
 
     navLinks.forEach((l) => l.classList.remove('active'));
     mobileNavLinks.forEach((l) => l.classList.remove('active'));
