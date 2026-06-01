@@ -50,8 +50,8 @@
     }
   }
 
-  function updateActiveNavbarLinks() {
-    const path = window.location.pathname;
+  function updateActiveNavbarLinks(currentHref = window.location.href) {
+    const path = new URL(currentHref, window.location.href).pathname;
     
     const normalize = (str) => {
       if (!str) return '';
@@ -139,9 +139,6 @@
             }
           });
 
-          // Update active states on the preserved navbar links to match the new page
-          updateActiveNavbarLinks();
-
           // Remove children of root EXCEPT navbar
           Array.from(root.children).forEach(child => {
             if (child !== navbar) {
@@ -163,6 +160,9 @@
           if (!isPopstate) {
             history.pushState(null, '', href);
           }
+
+          // Update active states on the preserved navbar links to match the new page
+          updateActiveNavbarLinks(href);
           
           // Signal SPA re-init (so initPortfolio skips navbar animation)
           window.__spaTransition = true;
@@ -215,4 +215,3 @@
     });
   });
 })();
-
