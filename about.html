@@ -167,24 +167,22 @@
       <div class="case-study-page-content" id="about-modal">
         <div class="case-study-modal-container">
           <div class="about-modal-inner">
-            <div class="about-modal-left">
-              <div class="about-modal-photo-frame">
-                <img
-                  src="assets/about/about-image.jpg"
-                  class="about-modal-photo"
-                  alt="📍Sydney Opera House"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <p class="about-modal-caption">
-                📍Sydney Opera House
-              </p>
+            <div class="about-modal-header">
+              <h1 class="hero-title about-hero-title">About</h1>
+              <p class="body-text about-hero-description">Hey, Chan here. This is a little bit about my design phylosophy and an introduction to myself on a personal level.</p>
+            </div>
+
+            <div class="about-cover-frame">
+              <img
+                src="assets/about/about-image-new.jpeg"
+                class="about-cover-photo"
+                alt="About Chandima"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
 
             <div class="about-modal-right">
-              <h2 class="about-title">Heya, I’m Chan!</h2>
-
               <nav class="about-modal-nav" aria-label="About sections">
                 <span class="about-nav-slider" aria-hidden="true"></span>
                 <button
@@ -331,8 +329,8 @@
         // Sequential entry animation
         var elementsToAnimate = [
           { selector: '.navbar', delay: 300 },
-          { selector: '.about-modal-left', delay: 500 },
-          { selector: '.about-title', delay: 600 },
+          { selector: '.about-modal-header', delay: 500 },
+          { selector: '.about-cover-frame', delay: 600 },
           { selector: '.about-modal-nav', delay: 700 },
           { selector: '.about-modal-body-stack', delay: 800 }
         ];

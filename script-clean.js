@@ -39,8 +39,8 @@ function initPortfolio() {
     { selector: '.case-study-sections', delay: 1000 },
     { selector: '.case-study-description', delay: 1100 },
     // About page specific selectors (for SPA navigation to about.html)
-    { selector: '.about-modal-left', delay: 500 },
-    { selector: '.about-title', delay: 600 },
+    { selector: '.about-modal-header', delay: 500 },
+    { selector: '.about-cover-frame', delay: 600 },
     { selector: '.about-modal-nav', delay: 700 },
     { selector: '.about-modal-body-stack', delay: 800 }
   ];

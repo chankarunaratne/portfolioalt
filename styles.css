@@ -344,14 +344,14 @@ body {
 .about {
   position: relative;
   width: 100%;
-  overflow: hidden; /* only the inner panel scrolls */
+  overflow: visible; /* allow standard page scroll */
   min-height: 100vh;
 }
 
 .about-html,
 .about-page {
-  height: 100%;
-  overflow: hidden;
+  height: auto;
+  overflow: visible;
 }
 
 /* About: ensure the content panel is always above sky + glare layers */
@@ -500,71 +500,25 @@ body {
 #about-modal .about-modal-inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
   gap: 32px;
   width: 100%;
 }
 
-#about-modal .about-modal-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 0 0 auto;
-  overflow: visible;
-}
-
-#about-modal .about-modal-photo-frame {
-  width: 314px;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px 0;
-  overflow: visible;
-}
-
-#about-modal .about-modal-photo {
-  width: 288px;
-  height: 388px;
-  object-fit: cover;
-  transform: rotate(-4deg);
-  display: block;
-  border-radius: 4px;
-  border: 4px solid var(--white);
-  box-shadow: var(--card-shadow);
-  background: transparent;
-}
-
-#about-modal .about-modal-caption {
-  margin: 8px 0 0;
-  width: min(277px, 100%);
-  text-align: center;
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  color: var(--text-subdued);
-}
-
-#about-modal .about-modal-right {
-  width: 100%;
-  max-width: 654px;
+#about-modal .about-modal-header {
+  text-align: left;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 12px;
+  width: 100%;
+  max-width: 654px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#about-modal .about-title {
+#about-modal .about-hero-title {
   font-family:
     'Inter Display',
     -apple-system,
@@ -575,15 +529,49 @@ body {
     Arial,
     sans-serif;
   font-size: 32px;
-  font-weight: 500;
   line-height: 38px;
+  font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+  margin: 0;
+}
+
+#about-modal .about-hero-description {
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--text-normal);
+  font-weight: 400;
+  margin: 0;
+  max-width: 600px;
+}
+
+#about-modal .about-cover-frame {
   width: 100%;
-  max-width: 640px;
+  max-width: 832px;
+  margin: 0 auto;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  border: none;
+}
+
+#about-modal .about-cover-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+#about-modal .about-modal-right {
+  width: 100%;
+  max-width: 654px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
   margin-left: auto;
   margin-right: auto;
-  box-sizing: border-box;
 }
 
 #about-modal .about-body {
@@ -1176,6 +1164,12 @@ body {
   overscroll-behavior: contain;
   flex: 1;
   min-height: 0;
+}
+
+#about-modal .case-study-modal-container {
+  overflow: visible !important;
+  overscroll-behavior: auto !important;
+  flex: none !important;
 }
 
 
@@ -3087,15 +3081,17 @@ body {
   }
 
   #about-modal .about-modal-inner {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 64px;
-    width: min(1032px, calc(100vw - 96px));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    width: 100%;
+    max-width: 832px;
+    margin: 0 auto;
   }
 
   #about-modal .about-modal-right {
-    width: 654px;
-    max-width: none;
+    width: 100%;
+    max-width: 654px;
   }
 
 
@@ -3219,9 +3215,9 @@ body {
   .case-study-modal .case-study-achievements,
   .case-study-modal .case-study-sections,
   .case-study-modal .case-study-description,
-  .case-study-modal .about-title,
+  .case-study-modal .about-hero-title,
   .case-study-modal .about-modal-body-stack,
-  .case-study-modal .about-modal-left,
+  .case-study-modal .about-cover-frame,
   .case-study-modal .about-modal-nav {
     opacity: 0;
     animation: mobileFadeIn 0.4s ease forwards;
@@ -3229,12 +3225,12 @@ body {
 
   /* Staggered delays - top to bottom in visual order */
   .case-study-modal .case-study-title,
-  .case-study-modal .about-title {
+  .case-study-modal .about-hero-title {
     animation-delay: 0s; /* First - appears immediately */
   }
 
-  .case-study-modal .about-modal-left {
-    animation-delay: 0s;
+  .case-study-modal .about-cover-frame {
+    animation-delay: 0.08s;
   }
 
   .case-study-modal .about-modal-nav {
@@ -3277,14 +3273,14 @@ body {
   #about-modal .about-modal-inner {
     gap: 48px;
   }
-  #about-modal .about-title {
+  #about-modal .about-hero-title {
     font-size: 28px;
     line-height: 36px;
     letter-spacing: -0.02em;
-    text-align: center;
+    text-align: left;
   }
   #about-modal .about-modal-right {
-    align-items: center;
+    align-items: flex-start;
   }
 
   /* About nav: horizontal scroll instead of wrapping on mobile */
@@ -3331,8 +3327,8 @@ body {
   .case-study-modal .case-study-description,
   .case-study-modal .case-study-description > *,
   .case-study-modal .case-study-image,
-  .case-study-modal .about-title,
-  .case-study-modal .about-modal-left,
+  .case-study-modal .about-hero-title,
+  .case-study-modal .about-cover-frame,
   .case-study-modal .about-modal-nav {
     will-change: auto !important;
     transform: none !important;
@@ -3348,12 +3344,6 @@ body {
     -webkit-backface-visibility: visible !important;
     backface-visibility: visible !important;
     isolation: isolate;
-  }
-
-  /* Restore desktop tilt on about image (force-clean above resets it) */
-  #about-modal .about-modal-photo {
-    transform: rotate(-4deg) !important;
-    -webkit-transform: rotate(-4deg) !important;
   }
 }
 
