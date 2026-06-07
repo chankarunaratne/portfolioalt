@@ -430,7 +430,6 @@ function initPortfolio() {
           intro: 'intro',
           philosophy: 'philosophy',
           photography: 'photography',
-          'movie log': 'movie-log',
         };
         const tabKey = tabMap[tabName];
         if (tabKey) {
