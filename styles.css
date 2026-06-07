@@ -1627,14 +1627,14 @@ body {
 .case-studies .product-logo-wrapper,
 .my-products-section .product-logo-wrapper,
 .case-study-app-card .product-logo-wrapper {
-  width: 48px !important;
-  height: 48px !important;
+  width: 44px !important;
+  height: 44px !important;
 }
 
 .case-card {
   background-color: transparent;
   border-bottom: 1px solid var(--border-regular);
-  padding: 12px 20px;
+  padding: 12px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1739,7 +1739,7 @@ body {
 .product-card {
   background-color: transparent;
   border-bottom: 1px solid var(--border-regular);
-  padding: 12px 20px;
+  padding: 12px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2023,7 +2023,7 @@ body {
   width: 100%;
   background-color: transparent;
   border-bottom: 1px solid var(--border-regular);
-  padding: 24px;
+  padding: 12px 12px;
 }
 
 .experience-item:last-child {
@@ -2044,16 +2044,16 @@ body {
 }
 
 .experience-logo-wrapper {
-  width: 52px;
-  height: 52px;
-  border-radius: 13px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   overflow: hidden;
   flex-shrink: 0;
 }
 
 .experience-logo {
-  width: 48px;
-  height: 48px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -2597,7 +2597,7 @@ body {
   }
 
   .product-card {
-    padding: 12px 20px;
+    padding: 12px 12px;
   }
 
   .product-card-content {
