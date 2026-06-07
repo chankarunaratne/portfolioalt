@@ -3268,7 +3268,7 @@ body {
 
   /* About popup mobile: content below close icon, heading centered */
   #about-modal .case-study-modal-container {
-    padding-top: calc(64px + env(safe-area-inset-top, 0px)) !important;
+    padding-top: 0 !important;
   }
   #about-modal .about-modal-inner {
     gap: 48px;
