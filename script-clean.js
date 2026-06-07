@@ -101,7 +101,7 @@ function initPortfolio() {
 
     // Navigation links functionality
     const allScrollLinks = document.querySelectorAll(
-      '.nav-link, .highlight-text',
+      '.nav-link',
     );
     allScrollLinks.forEach((link) => {
       link.addEventListener('click', function (e) {
