@@ -1802,7 +1802,7 @@ body {
 .product-details {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   min-width: 0;
 }
 
@@ -2626,7 +2626,7 @@ body {
   }
 
   .product-details {
-    gap: 4px;
+    gap: 2px;
   }
 
   .product-name {
