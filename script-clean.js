@@ -35,6 +35,7 @@ function initPortfolio() {
     { selector: '.case-study-header', delay: 500 },
     { selector: '.case-study-app-card', delay: 700 },
     { selector: '.case-study-page-content .case-study-text-container > .case-study-featured-image', delay: 800 },
+    { selector: '.case-study-page-content .case-study-text-container > .case-study-note', delay: 900 },
     { selector: '.case-study-achievements', delay: 900 },
     { selector: '.case-study-sections', delay: 1000 },
     { selector: '.case-study-description', delay: 1100 },
