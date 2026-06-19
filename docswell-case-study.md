@@ -11,15 +11,15 @@ Docswell is a UK-based medtech company that helps medical practices completely d
 - **28%:** Task time reduction
 - **80%+:** Practitioner activation
 
-## Background
+## The Problem: Fragmented Workflows in UK Digital Healthcare
 At the time, UK medical practitioners relied on multiple disconnected tools for appointments, records, and communication, creating time-consuming workflows that pulled focus away from patient care.
 
 When I joined, there was already an early MVP, but as the company shifted its focus to therapist-led practices, I redesigned both the practitioner and patient portals to better support new needs and prepare the platform for its first public release.
 
-## Role
+## Role: Design and Systems Ownership
 I was the sole designer on the team and wore multiple hats. I led user research, design system, and end-to-end UI design. I also played a pivotal role in product decisions while collaborating closely with the Founder and COO.
 
-## Outcome
+## Business Impact
 - Redesigned practice and client portals, to streamline complex clinical workflows, resulting in a **28% reduction in task completion time** for practitioners.
 - Conducted user interviews with clinicians to validate workflows and surface real-world pain points, **identifying 3 critical usability issues** that prioritised the MVP backlog.
 - Created a scalable design system to ensure consistency across patient-facing and internal tools, **reducing design-to-development cycle time by 3 days per feature**.
