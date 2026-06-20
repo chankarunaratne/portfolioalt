@@ -902,6 +902,8 @@ function initPortfolio() {
 
   handleInitialHash();
 
+  initCaseStudyHoverPreview();
+
   window.addEventListener('hashchange', function () {
     const hash = window.location.hash;
     if (hash === '#about') {
@@ -914,6 +916,116 @@ function initPortfolio() {
       window.location.href = 'jiffyhive-case-study.html';
     }
   });
+}
+
+let caseStudyHoverAbortController = null;
+
+function initCaseStudyHoverPreview() {
+  const desktopMq = window.matchMedia('(min-width: 769px) and (pointer: fine)');
+
+  if (caseStudyHoverAbortController) {
+    caseStudyHoverAbortController.abort();
+    caseStudyHoverAbortController = null;
+  }
+
+  const caseCards = document.querySelectorAll(
+    '.case-studies .case-card[data-preview-image]',
+  );
+  if (!caseCards.length) return;
+
+  let preview = document.getElementById('case-study-hover-preview');
+  if (!preview) {
+    preview = document.createElement('div');
+    preview.id = 'case-study-hover-preview';
+    preview.className = 'case-study-hover-preview';
+    preview.innerHTML = '<img src="" alt="" decoding="async" />';
+    document.body.appendChild(preview);
+  }
+
+  const previewImg = preview.querySelector('img');
+  const preloadedImages = new Set();
+  let activeCard = null;
+  let rafId = null;
+  let mouseX = 0;
+  let mouseY = 0;
+
+  function hidePreview() {
+    activeCard = null;
+    preview.classList.remove('active');
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
+  function updatePreviewPosition() {
+    rafId = null;
+    preview.style.setProperty('--peek-x', `${mouseX}px`);
+    preview.style.setProperty('--peek-y', `${mouseY}px`);
+  }
+
+  function queuePreviewPosition() {
+    if (!rafId) {
+      rafId = requestAnimationFrame(updatePreviewPosition);
+    }
+  }
+
+  function preloadImage(src) {
+    if (!src || preloadedImages.has(src)) return;
+    preloadedImages.add(src);
+    const img = new Image();
+    img.src = src;
+  }
+
+  function showPreview(card, event) {
+    if (!desktopMq.matches) return;
+
+    const src = card.dataset.previewImage;
+    if (!src) return;
+
+    preloadImage(src);
+
+    if (previewImg.getAttribute('src') !== src) {
+      previewImg.src = src;
+    }
+
+    const name = card.querySelector('.product-name')?.textContent?.trim();
+    previewImg.alt = name ? `${name} preview` : 'Case study preview';
+
+    activeCard = card;
+    preview.classList.add('active');
+
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    updatePreviewPosition();
+  }
+
+  function onMouseMove(event) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    queuePreviewPosition();
+  }
+
+  function onDesktopChange() {
+    if (!desktopMq.matches) hidePreview();
+  }
+
+  caseStudyHoverAbortController = new AbortController();
+  const { signal } = caseStudyHoverAbortController;
+
+  caseCards.forEach((card) => {
+    preloadImage(card.dataset.previewImage);
+
+    card.addEventListener(
+      'mouseenter',
+      (event) => showPreview(card, event),
+      { signal },
+    );
+    card.addEventListener('mousemove', onMouseMove, { signal });
+    card.addEventListener('mouseleave', hidePreview, { signal });
+  });
+
+  desktopMq.addEventListener('change', onDesktopChange, { signal });
 }
 
 document.addEventListener('DOMContentLoaded', initPortfolio);
