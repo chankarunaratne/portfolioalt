@@ -131,6 +131,27 @@
     root.classList.remove("page-leave");
   }
 
+  function isAbsoluteOrSpecialUrl(value) {
+    if (!value) return true;
+    return (
+      value.startsWith('/') ||
+      value.startsWith('#') ||
+      value.startsWith('data:') ||
+      value.startsWith('blob:') ||
+      /^[a-z][a-z0-9+.-]*:/i.test(value)
+    );
+  }
+
+  function absolutizeRelativeUrls(container) {
+    container.querySelectorAll('[src], [href]').forEach((el) => {
+      ['src', 'href'].forEach((attr) => {
+        const value = el.getAttribute(attr);
+        if (isAbsoluteOrSpecialUrl(value)) return;
+        el.setAttribute(attr, new URL(value, window.location.origin + '/').pathname);
+      });
+    });
+  }
+
   function navigateWithFade(href, isPopstate = false) {
     const root = getPageRoot();
     const navbar = root.querySelector('.navbar');
@@ -167,6 +188,12 @@
             }
           });
 
+          // Update URL before inserting content so relative asset paths resolve correctly
+          if (!isPopstate) {
+            history.pushState(null, '', absoluteHref);
+          }
+          canonicalizeCleanPageUrl();
+
           // Remove children of root EXCEPT navbar
           Array.from(root.children).forEach(child => {
             if (child !== navbar) {
@@ -178,17 +205,12 @@
           Array.from(newRoot.children).forEach(child => {
             if (!child.classList.contains('navbar')) {
               const cloned = child.cloneNode(true);
+              absolutizeRelativeUrls(cloned);
               cloned.style.opacity = '';
               cloned.style.transition = '';
               root.appendChild(cloned);
             }
           });
-          
-          // Push state
-          if (!isPopstate) {
-            history.pushState(null, '', absoluteHref);
-          }
-          canonicalizeCleanPageUrl();
 
           // Update active states on the preserved navbar links to match the new page
           updateActiveNavbarLinks();
