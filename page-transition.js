@@ -134,6 +134,7 @@
   function navigateWithFade(href, isPopstate = false) {
     const root = getPageRoot();
     const navbar = root.querySelector('.navbar');
+    const absoluteHref = new URL(href, window.location.href).href;
 
     // Fade out only non-navbar content (keep navbar visible throughout)
     Array.from(root.children).forEach(child => {
@@ -143,7 +144,7 @@
       }
     });
 
-    fetch(href)
+    fetch(absoluteHref)
       .then(r => r.text())
       .then(html => {
         const parser = new DOMParser();
@@ -152,7 +153,7 @@
         window.setTimeout(() => {
           const newRoot = newDoc.querySelector('.page-root');
           if (!newRoot) {
-            window.location.href = href;
+            window.location.href = absoluteHref;
             return;
           }
 
@@ -185,7 +186,7 @@
           
           // Push state
           if (!isPopstate) {
-            history.pushState(null, '', href);
+            history.pushState(null, '', absoluteHref);
           }
           canonicalizeCleanPageUrl();
 
@@ -205,7 +206,7 @@
       })
       .catch((err) => {
         console.error("Transition error caught:", err);
-        window.location.href = href;
+        window.location.href = absoluteHref;
       });
   }
 
