@@ -2402,7 +2402,6 @@ body {
   line-height: 1;
   color: var(--text-muted);
   letter-spacing: 0.05em;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
