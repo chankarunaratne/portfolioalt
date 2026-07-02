@@ -1082,6 +1082,8 @@ body.home .hero-title {
     'Helvetica Neue',
     Arial,
     sans-serif;
+  font-size: 36px;
+  line-height: 42px;
   font-weight: 400;
   letter-spacing: normal;
 }
@@ -2733,6 +2735,12 @@ body.home .hero-title {
     font-size: 28px;
     line-height: 36px;
     letter-spacing: -0.02em;
+  }
+
+  body.home .hero-title {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: normal;
   }
 
   /* Allow wrapping on smaller screens */
