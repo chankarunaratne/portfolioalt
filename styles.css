@@ -3476,8 +3476,11 @@ body {
 }
 
 .case-study-page-content .case-study-title,
-.case-study-page-content .case-study-company,
 .case-study-page-content .case-study-body-heading {
+  color: var(--article-body-text);
+}
+
+.case-study-page-content .case-study-company {
   color: var(--text-muted);
 }
 
