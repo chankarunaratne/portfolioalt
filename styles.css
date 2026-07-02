@@ -1071,6 +1071,21 @@ body {
     sans-serif;
 }
 
+body.home .hero-title {
+  font-family:
+    'Pirata One',
+    'InterDisplay',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
 /* Force precise two-line layout for hero title on desktop */
 .hero-line {
   white-space: nowrap;
